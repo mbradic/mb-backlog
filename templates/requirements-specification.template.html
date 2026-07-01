@@ -183,6 +183,11 @@
         margin-bottom: 0;
       }
 
+      .toc ol ol {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
       .toc a {
         color: inherit;
         text-decoration: none;
@@ -200,10 +205,12 @@
         border-radius: 4px;
       }
 
-      .test-scenarios h4 {
+      .test-scenarios-label {
         color: #00aa00;
+        font-weight: 600;
         margin-top: 0;
         margin-bottom: 12px;
+        font-size: 1em;
       }
 
       .test-case {
@@ -217,8 +224,9 @@
       .test-case-id {
         font-weight: bold;
         color: #00aa00;
-        display: block;
-        margin-bottom: 8px;
+        font-size: 1em;
+        margin: 0 0 8px 0;
+        padding: 0;
       }
 
       .test-section {
@@ -522,25 +530,82 @@
       <div class="toc">
         <h3>Table of Contents</h3>
         <ol>
-          <li><a href="#executive-summary">Executive Summary</a></li>
-          <li><a href="#project-overview">Project Overview</a></li>
           <li>
-            <a href="#functional-requirements">Functional Requirements</a>
+            <a href="#executive-summary">Executive Summary</a>
           </li>
           <li>
-            <a href="#non-functional-requirements"
-              >Non-Functional Requirements</a
-            >
+            <a href="#project-overview">Project Overview</a>
+            <ol>
+              <li><a href="#po-background">Background</a></li>
+              <li><a href="#po-scope">Scope</a></li>
+              <li><a href="#po-target-users">Target Users</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#functional-requirements">Functional Requirements</a>
+            <ol>
+              <li>
+                <a href="#fr-001">FR-001: [Feature Title]</a>
+                <ol>
+                  <li><a href="#tc-001-001">TC-001-001: [Test Case Title]</a></li>
+                  <li><a href="#tc-001-002">TC-001-002: [Alternative Scenario]</a></li>
+                </ol>
+              </li>
+              <li>
+                <a href="#fr-002">FR-002: [Feature Title]</a>
+                <ol>
+                  <li><a href="#tc-002-001">TC-002-001: [Test Case Title]</a></li>
+                </ol>
+              </li>
+              <li>
+                <a href="#fr-003">FR-003: [Feature Title]</a>
+                <ol>
+                  <li><a href="#tc-003-001">TC-003-001: [Test Case Title]</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <a href="#non-functional-requirements">Non-Functional Requirements</a>
+            <ol>
+              <li><a href="#nfr-performance">Performance</a></li>
+              <li><a href="#nfr-scalability">Scalability</a></li>
+              <li><a href="#nfr-security">Security</a></li>
+              <li><a href="#nfr-reliability">Reliability & Availability</a></li>
+              <li><a href="#nfr-usability">Usability</a></li>
+              <li><a href="#nfr-maintainability">Maintainability</a></li>
+            </ol>
           </li>
           <li>
             <a href="#technical-specifications">Technical Specifications</a>
+            <ol>
+              <li><a href="#ts-architecture">Architecture</a></li>
+              <li><a href="#ts-technology-stack">Technology Stack</a></li>
+              <li><a href="#ts-database-schema">Database Schema (Summary)</a></li>
+              <li><a href="#ts-api-specifications">API Specifications</a></li>
+              <li><a href="#ts-integration-points">Integration Points</a></li>
+            </ol>
           </li>
           <li>
             <a href="#constraints-assumptions">Constraints & Assumptions</a>
+            <ol>
+              <li><a href="#ca-constraints">Constraints</a></li>
+              <li><a href="#ca-assumptions">Assumptions</a></li>
+            </ol>
           </li>
-          <li><a href="#dependencies-risks">Dependencies & Risks</a></li>
-          <li><a href="#change-history">Change History</a></li>
-          <li><a href="#approvals">Approvals</a></li>
+          <li>
+            <a href="#dependencies-risks">Dependencies & Risks</a>
+            <ol>
+              <li><a href="#dr-external-dependencies">External Dependencies</a></li>
+              <li><a href="#dr-known-risks">Known Risks</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#change-history">Change History</a>
+          </li>
+          <li>
+            <a href="#approvals">Approvals & Sign-Off</a>
+          </li>
         </ol>
       </div>
 
@@ -561,14 +626,14 @@
       <!-- Project Overview -->
       <h2 id="project-overview">2. Project Overview</h2>
 
-      <h3>Background</h3>
+      <h3 id="po-background">Background</h3>
       <p>
         [Provide context and background information about why this project is
         needed. Describe the current situation and problems that need to be
         addressed.]
       </p>
 
-      <h3>Scope</h3>
+      <h3 id="po-scope">Scope</h3>
       <p><strong>In Scope:</strong></p>
       <ul>
         <li>[Feature/Functionality 1]</li>
@@ -581,7 +646,7 @@
         <li>[Future enhancements]</li>
       </ul>
 
-      <h3>Target Users</h3>
+      <h3 id="po-target-users">Target Users</h3>
       <ul>
         <li><strong>User Role 1:</strong> [Description]</li>
         <li><strong>User Role 2:</strong> [Description]</li>
@@ -596,10 +661,8 @@
         traceability.
       </p>
 
-      <h3 id="fr-001">FR-001: [Feature Title]</h3>
-
       <div class="requirement">
-        <span class="requirement-id">FR-001: [Feature Title]</span>
+        <h3 class="requirement-id" id="fr-001">FR-001: [Feature Title]</h3>
         <div class="requirement-description">
           <p>
             <strong>Description:</strong> [Clear description of what the system
@@ -608,9 +671,9 @@
           <p><strong>Related User Role:</strong> [User Role]</p>
         </div>
         <div class="test-scenarios">
-          <h4>Manual Testing Scenarios</h4>
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
           <div class="test-case">
-            <span class="test-case-id">TC-001-001: [Test Case Title]</span>
+            <h4 class="test-case-id" id="tc-001-001">TC-001-001: [Test Case Title]</h4>
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
               <p style="margin: 5px 0 0 0">
@@ -844,7 +907,7 @@
             </div>
           </div>
           <div class="test-case">
-            <span class="test-case-id">TC-001-002: [Alternative Scenario]</span>
+            <h4 class="test-case-id" id="tc-001-002">TC-001-002: [Alternative Scenario]</h4>
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
               <p style="margin: 5px 0 0 0">
@@ -940,10 +1003,8 @@
         </div>
       </div>
 
-      <h3 id="fr-002">FR-002: [Feature Title]</h3>
-
       <div class="requirement">
-        <span class="requirement-id">FR-002: [Feature Title]</span>
+        <h3 class="requirement-id" id="fr-002">FR-002: [Feature Title]</h3>
         <div class="requirement-description">
           <p>
             <strong>Description:</strong> [Clear description of what the system
@@ -952,9 +1013,9 @@
           <p><strong>Related User Role:</strong> [User Role]</p>
         </div>
         <div class="test-scenarios">
-          <h4>Manual Testing Scenarios</h4>
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
           <div class="test-case">
-            <span class="test-case-id">TC-002-001: [Test Case Title]</span>
+            <h4 class="test-case-id" id="tc-002-001">TC-002-001: [Test Case Title]</h4>
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
               <p style="margin: 5px 0 0 0">
@@ -1088,10 +1149,8 @@
         </div>
       </div>
 
-      <h3 id="fr-003">FR-003: [Feature Title]</h3>
-
       <div class="requirement">
-        <span class="requirement-id">FR-003: [Feature Title]</span>
+        <h3 class="requirement-id" id="fr-003">FR-003: [Feature Title]</h3>
         <div class="requirement-description">
           <p>
             <strong>Description:</strong> [Clear description of what the system
@@ -1100,9 +1159,9 @@
           <p><strong>Related User Role:</strong> [User Role]</p>
         </div>
         <div class="test-scenarios">
-          <h4>Manual Testing Scenarios</h4>
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
           <div class="test-case">
-            <span class="test-case-id">TC-003-001: [Test Case Title]</span>
+            <h4 class="test-case-id" id="tc-003-001">TC-003-001: [Test Case Title]</h4>
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
               <p style="margin: 5px 0 0 0">
@@ -1201,20 +1260,20 @@
       <!-- Non-Functional Requirements -->
       <h2 id="non-functional-requirements">4. Non-Functional Requirements</h2>
 
-      <h3>Performance</h3>
+      <h3 id="nfr-performance">Performance</h3>
       <ul>
         <li>Response time for [operation]: [time] milliseconds</li>
         <li>System throughput: [number] transactions per second</li>
         <li>Data load time: [time]</li>
       </ul>
 
-      <h3>Scalability</h3>
+      <h3 id="nfr-scalability">Scalability</h3>
       <p>
         [Describe how the system should handle increased load. Include expected
         user capacity, data volume growth, and expected peak usage patterns.]
       </p>
 
-      <h3>Security</h3>
+      <h3 id="nfr-security">Security</h3>
       <ul>
         <li>Authentication: [Method - e.g., OAuth 2.0, LDAP]</li>
         <li>
@@ -1225,21 +1284,21 @@
         <li>Compliance: [GDPR, HIPAA, PCI-DSS, etc.]</li>
       </ul>
 
-      <h3>Reliability & Availability</h3>
+      <h3 id="nfr-reliability">Reliability & Availability</h3>
       <ul>
         <li>Uptime SLA: [percentage]</li>
         <li>Mean Time To Recovery (MTTR): [time]</li>
         <li>Backup Strategy: [description]</li>
       </ul>
 
-      <h3>Usability</h3>
+      <h3 id="nfr-usability">Usability</h3>
       <ul>
         <li>Browser compatibility: [List of supported browsers]</li>
         <li>Accessibility: [WCAG 2.1 Level AA compliance]</li>
         <li>Response to user interactions: [time] seconds</li>
       </ul>
 
-      <h3>Maintainability</h3>
+      <h3 id="nfr-maintainability">Maintainability</h3>
       <ul>
         <li>Code documentation: [Required standards]</li>
         <li>Testing coverage: [Target percentage]</li>
@@ -1249,13 +1308,13 @@
       <!-- Technical Specifications -->
       <h2 id="technical-specifications">6. Technical Specifications</h2>
 
-      <h3>Architecture</h3>
+      <h3 id="ts-architecture">Architecture</h3>
       <p>
         [Describe the high-level system architecture. Include diagrams or
         references if available.]
       </p>
 
-      <h3>Technology Stack</h3>
+      <h3 id="ts-technology-stack">Technology Stack</h3>
       <table>
         <thead>
           <tr>
@@ -1287,20 +1346,20 @@
         </tbody>
       </table>
 
-      <h3>Database Schema (Summary)</h3>
+      <h3 id="ts-database-schema">Database Schema (Summary)</h3>
       <p>
         [Describe main entities and their relationships. Include detailed schema
         diagrams separately if needed.]
       </p>
 
-      <h3>API Specifications</h3>
+      <h3 id="ts-api-specifications">API Specifications</h3>
       <p>
         [Describe key API endpoints, request/response formats, and
         authentication methods. Reference OpenAPI/Swagger documentation if
         available.]
       </p>
 
-      <h3>Integration Points</h3>
+      <h3 id="ts-integration-points">Integration Points</h3>
       <ul>
         <li>[External system 1]: [Integration method and description]</li>
         <li>[External system 2]: [Integration method and description]</li>
@@ -1309,7 +1368,7 @@
       <!-- Constraints & Assumptions -->
       <h2 id="constraints-assumptions">7. Constraints & Assumptions</h2>
 
-      <h3>Constraints</h3>
+      <h3 id="ca-constraints">Constraints</h3>
       <ul>
         <li><strong>Budget:</strong> [Budget constraints if any]</li>
         <li><strong>Timeline:</strong> [Deadline or timeline constraints]</li>
@@ -1325,7 +1384,7 @@
         </li>
       </ul>
 
-      <h3>Assumptions</h3>
+      <h3 id="ca-assumptions">Assumptions</h3>
       <ul>
         <li>[Assumption 1 - What we're assuming to be true]</li>
         <li>[Assumption 2 - What we're assuming to be true]</li>
@@ -1335,13 +1394,13 @@
       <!-- Dependencies -->
       <h2 id="dependencies-risks">8. Dependencies & Risks</h2>
 
-      <h3>External Dependencies</h3>
+      <h3 id="dr-external-dependencies">External Dependencies</h3>
       <ul>
         <li>[Dependency 1]: [Impact if not available]</li>
         <li>[Dependency 2]: [Impact if not available]</li>
       </ul>
 
-      <h3>Known Risks</h3>
+      <h3 id="dr-known-risks">Known Risks</h3>
       <table>
         <thead>
           <tr>
