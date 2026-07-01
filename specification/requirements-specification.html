@@ -631,7 +631,13 @@
           <li>
             <a href="#functional-requirements">Functional Requirements</a>
             <ol>
-              <li><a href="#functional-requirements">Core Features</a></li>
+              <li><a href="#fr-001">FR-001: View Backlog List</a></li>
+              <li><a href="#fr-002">FR-002: Add Backlog Item</a></li>
+              <li><a href="#fr-003">FR-003: Edit Backlog Item</a></li>
+              <li><a href="#fr-004">FR-004: Delete Backlog Item</a></li>
+              <li>
+                <a href="#fr-005">FR-005: View Backlog Item Detail</a>
+              </li>
             </ol>
           </li>
           <li>
@@ -720,7 +726,7 @@
       <!-- Project Overview -->
       <h2 id="project-overview">2. Project Overview</h2>
 
-      <h3>2.1 Background</h3>
+      <h3>Background</h3>
       <p>
         The user needs a straightforward place to keep a running backlog of
         personal tasks, instead of relying on scattered notes or third-party
@@ -728,7 +734,7 @@
         application dedicated solely to backlog management.
       </p>
 
-      <h3>2.2 Scope</h3>
+      <h3>Scope</h3>
       <p><strong>In Scope:</strong></p>
       <ul>
         <li>Viewing the list of backlog items</li>
@@ -744,7 +750,7 @@
         <li>Integrations with third-party task tools</li>
       </ul>
 
-      <h3>2.3 Target Users</h3>
+      <h3>Target Users</h3>
       <ul>
         <li>
           <strong>Owner:</strong> The single user of the application, who both
@@ -760,10 +766,9 @@
         traceability.
       </p>
 
-      <h3>3.1 Core Features</h3>
+      <h3 id="fr-001">FR-001: View Backlog List</h3>
 
       <div class="requirement">
-        <span class="requirement-id">FR-001: View Backlog List</span>
         <div class="requirement-description">
           <p>
             <strong>Description:</strong> The system shall display all backlog
@@ -1115,8 +1120,9 @@
         </div>
       </div>
 
+      <h3 id="fr-002" style="color: #0066cc">FR-002: Add Backlog Item</h3>
+
       <div class="requirement">
-        <span class="requirement-id">FR-002: Add Backlog Item</span>
         <div class="requirement-description">
           <p>
             <strong>Description:</strong> The system shall allow the user to add
@@ -1423,8 +1429,9 @@
         </div>
       </div>
 
+      <h3 id="fr-003">FR-003: Edit Backlog Item</h3>
+
       <div class="requirement">
-        <span class="requirement-id">FR-003: Edit Backlog Item</span>
         <div class="requirement-description">
           <p>
             <strong>Description:</strong> The system shall allow the user to
@@ -1611,8 +1618,9 @@
         </div>
       </div>
 
+      <h3 id="fr-004">FR-004: Delete Backlog Item</h3>
+
       <div class="requirement">
-        <span class="requirement-id">FR-004: Delete Backlog Item</span>
         <div class="requirement-description">
           <p>
             <strong>Description:</strong> The system shall allow the user to
@@ -1951,8 +1959,9 @@
         </div>
       </div>
 
+      <h3 id="fr-005">FR-005: View Backlog Item Detail</h3>
+
       <div class="requirement">
-        <span class="requirement-id">FR-005: View Backlog Item Detail</span>
         <div class="requirement-description">
           <p>
             <strong>Description:</strong> The system shall allow the user to
@@ -2282,7 +2291,7 @@
       <!-- Non-Functional Requirements -->
       <h2 id="non-functional-requirements">4. Non-Functional Requirements</h2>
 
-      <h3>4.1 Performance</h3>
+      <h3>Performance</h3>
       <ul>
         <li>
           Response time for list, view, add, edit, and delete operations: under
@@ -2291,14 +2300,14 @@
         <li>Initial page load: under 1 second when served locally</li>
       </ul>
 
-      <h3>4.2 Scalability</h3>
+      <h3>Scalability</h3>
       <p>
         The application is designed for a single user with a modest number of
         backlog items (expected up to a few thousand rows). SQLite is sufficient
         for this scale; no horizontal scaling or clustering is required.
       </p>
 
-      <h3>4.3 Security</h3>
+      <h3>Security</h3>
       <ul>
         <li>
           Authentication: Not required for v1.0 &mdash; the application is
@@ -2318,7 +2327,7 @@
         </li>
       </ul>
 
-      <h3>4.4 Reliability & Availability</h3>
+      <h3>Reliability & Availability</h3>
       <ul>
         <li>Uptime SLA: None &mdash; personal, locally-run application</li>
         <li>
@@ -2327,7 +2336,7 @@
         </li>
       </ul>
 
-      <h3>4.5 Usability</h3>
+      <h3>Usability</h3>
       <ul>
         <li>
           Browser compatibility: Latest versions of Chrome, Firefox, and Edge
@@ -2338,7 +2347,7 @@
         </li>
       </ul>
 
-      <h3>4.6 Maintainability</h3>
+      <h3>Maintainability</h3>
       <ul>
         <li>
           Technology stack: Plain JavaScript, HTML, and CSS on the frontend;
@@ -2354,7 +2363,7 @@
       <!-- Technical Specifications -->
       <h2 id="technical-specifications">5. Technical Specifications</h2>
 
-      <h3>5.1 Architecture</h3>
+      <h3>Architecture</h3>
       <p>
         mb-backlog follows a simple client-server architecture. A static
         frontend (HTML, CSS, and vanilla JavaScript) runs in the browser and
@@ -2364,7 +2373,7 @@
         file.
       </p>
 
-      <h3>5.2 Technology Stack</h3>
+      <h3>Technology Stack</h3>
       <table>
         <thead>
           <tr>
@@ -2403,7 +2412,7 @@
         </tbody>
       </table>
 
-      <h3>5.3 Database Schema (Summary)</h3>
+      <h3>Database Schema (Summary)</h3>
       <p>A single table stores all backlog items:</p>
       <table>
         <thead>
@@ -2432,7 +2441,7 @@
         </tbody>
       </table>
 
-      <h3>5.4 API Specifications</h3>
+      <h3>API Specifications</h3>
       <table>
         <thead>
           <tr>
@@ -2470,7 +2479,7 @@
         </tbody>
       </table>
 
-      <h3>5.5 Integration Points</h3>
+      <h3>Integration Points</h3>
       <p>
         None. mb-backlog is a fully self-contained, single-user, locally-run
         application with no third-party service integrations in v1.0.
@@ -2479,7 +2488,7 @@
       <!-- Constraints & Assumptions -->
       <h2 id="constraints-assumptions">6. Constraints & Assumptions</h2>
 
-      <h3>6.1 Constraints</h3>
+      <h3>Constraints</h3>
       <ul>
         <li><strong>Budget:</strong> None &mdash; personal side project</li>
         <li><strong>Timeline:</strong> No fixed deadline</li>
@@ -2495,7 +2504,7 @@
         <li><strong>Regulatory:</strong> None</li>
       </ul>
 
-      <h3>6.2 Assumptions</h3>
+      <h3>Assumptions</h3>
       <ul>
         <li>
           The application runs on a single machine and is accessed by a single
@@ -2511,7 +2520,7 @@
       <!-- Dependencies -->
       <h2 id="dependencies-risks">7. Dependencies & Risks</h2>
 
-      <h3>7.1 External Dependencies</h3>
+      <h3>External Dependencies</h3>
       <ul>
         <li>
           Node.js runtime: Required to run the backend; without it the
@@ -2523,7 +2532,7 @@
         </li>
       </ul>
 
-      <h3>7.2 Known Risks</h3>
+      <h3>Known Risks</h3>
       <table>
         <thead>
           <tr>
