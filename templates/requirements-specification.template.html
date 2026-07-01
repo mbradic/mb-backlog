@@ -347,6 +347,57 @@
             min-height: 25px;
         }
         
+        .wireframe-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 5px 0;
+            background-color: white;
+        }
+        
+        .wireframe-table th,
+        .wireframe-table td {
+            border: 1px solid #ddd;
+            padding: 8px 10px;
+            text-align: left;
+            font-size: 0.95em;
+        }
+        
+        .wireframe-table th {
+            background-color: #1a1a1a;
+            font-weight: bold;
+        }
+        
+        .wireframe-table tbody tr:nth-child(even) td {
+            background-color: #fafafa;
+        }
+        
+        .wireframe-th-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .wireframe-sort-btn {
+            opacity: 0.7;
+            font-size: 0.8em;
+        }
+        
+        .wireframe-filter-row th {
+            background-color: white;
+            padding: 6px 8px;
+        }
+        
+        .wireframe-filter-input {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 4px 6px;
+            font-size: 0.85em;
+            font-weight: normal;
+            color: #999;
+        }
+        
         .wireframe-button {
             display: inline-block;
             background-color: #1a1a1a;
@@ -382,7 +433,24 @@
             color: #666;
             font-size: 0.8em;
             margin-bottom: 3px;
-            text-transform: uppercase;
+        }
+        
+        .wireframe-form-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 5px 0;
+        }
+        
+        .wireframe-form-row .wireframe-label {
+            width: 100px;
+            flex-shrink: 0;
+            margin-bottom: 0;
+        }
+        
+        .wireframe-form-row .wireframe-item {
+            flex: 1;
+            margin: 0;
         }
         
         .page-break {
@@ -527,36 +595,107 @@
                                 <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
+                                        <div class="wireframe-logo">CRM System</div>
                                         <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
+                                            <div>Dashboard</div>
+                                            <div>Entities</div>
+                                            <div>Reports</div>
                                         </div>
                                     </div>
                                     <div class="wireframe-main">
                                         <div class="wireframe-content">
                                             <div class="wireframe-section">
                                                 <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
+                                                    <div class="wireframe-section-title">Business Entities (24)</div>
+                                                    <div class="wireframe-section-action">+ New Entity</div>
                                                 </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
+                                                <table class="wireframe-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><div class="wireframe-th-content">Name <span class="wireframe-sort-btn">⇅</span></div></th>
+                                                            <th><div class="wireframe-th-content">Type <span class="wireframe-sort-btn">⇅</span></div></th>
+                                                            <th><div class="wireframe-th-content">Status <span class="wireframe-sort-btn">⇅</span></div></th>
+                                                        </tr>
+                                                        <tr class="wireframe-filter-row">
+                                                            <th><div class="wireframe-filter-input">Filter name...</div></th>
+                                                            <th><div class="wireframe-filter-input">Filter type...</div></th>
+                                                            <th><div class="wireframe-filter-input">Filter status...</div></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Acme Corporation</td>
+                                                            <td>Customer</td>
+                                                            <td>Active</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Globex Industries</td>
+                                                            <td>Supplier</td>
+                                                            <td>Active</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Initech LLC</td>
+                                                            <td>Partner</td>
+                                                            <td>Inactive</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Umbrella Corp</td>
+                                                            <td>Customer</td>
+                                                            <td>Pending</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
+                                    <div class="wireframe-footer" style="text-align: right;">
+                                        © 2026 CRM System | Privacy Policy | Terms of Service
                                     </div>
                                 </div>
                             </div>
                             <div class="test-step-block">
                                 <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
+                                <div class="wireframe-container">
+                                    <div class="wireframe-header">
+                                        <div class="wireframe-logo">CRM System</div>
+                                        <div class="wireframe-nav">
+                                            <div>Dashboard</div>
+                                            <div>Entities</div>
+                                            <div>Reports</div>
+                                        </div>
+                                    </div>
+                                    <div class="wireframe-main">
+                                        <div class="wireframe-content">
+                                            <div class="wireframe-section">
+                                                <div class="wireframe-section-header">
+                                                    <div class="wireframe-section-title">New Entity</div>
+                                                </div>
+                                                <div class="wireframe-form-row">
+                                                    <div class="wireframe-label">Name</div>
+                                                    <div class="wireframe-item"></div>
+                                                </div>
+                                                <div class="wireframe-form-row">
+                                                    <div class="wireframe-label">Type</div>
+                                                    <div class="wireframe-item"></div>
+                                                </div>
+                                                <div class="wireframe-form-row">
+                                                    <div class="wireframe-label">Status</div>
+                                                    <div class="wireframe-item"></div>
+                                                </div>
+                                            </div>
+                                            <div style="text-align: right; margin-top: 20px;">
+                                                <div class="wireframe-button">Save</div>
+                                                <div class="wireframe-button-secondary">Cancel</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wireframe-footer">
+                                        © 2026 CRM System | Privacy Policy | Terms of Service
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="test-step-block">
+                                <div class="test-step-text"><strong>Step 3:</strong> [Step 3]</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
                                         <div class="wireframe-logo">[App Logo/Name]</div>
@@ -588,7 +727,7 @@
                                 </div>
                             </div>
                             <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 3:</strong> [Step 3]</div>
+                                <div class="test-step-text"><strong>Step 4:</strong> [Step 4]</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
                                         <div class="wireframe-logo">[App Logo/Name]</div>
