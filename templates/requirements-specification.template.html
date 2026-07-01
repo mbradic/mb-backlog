@@ -1,1262 +1,1409 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Requirements Specification</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 40px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      header {
+        border-bottom: 3px solid #1a1a1a;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+      }
+
+      h1 {
+        color: #1a1a1a;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
+
+      .meta-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 15px;
+        font-size: 0.95em;
+      }
+
+      .meta-item {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .meta-label {
+        font-weight: bold;
+        color: #666;
+      }
+
+      .meta-value {
+        color: #333;
+      }
+
+      h2 {
+        color: #1a1a1a;
+        font-size: 1.8em;
+        margin-top: 40px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      h3 {
+        color: #333;
+        font-size: 1.3em;
+        margin-top: 25px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 15px;
+        text-align: justify;
+      }
+
+      ul,
+      ol {
+        margin-left: 30px;
+        margin-bottom: 15px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        margin-top: 10px;
+      }
+
+      table thead {
+        background-color: #1a1a1a;
+        color: white;
+      }
+
+      table th,
+      table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      table tbody tr:hover {
+        background-color: #f0f0f0;
+      }
+
+      .requirement {
+        background-color: #f9f9f9;
+        border-left: 4px solid #0066cc;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+
+      .requirement-id {
+        font-weight: bold;
+        color: #0066cc;
+      }
+
+      .requirement-description {
+        margin-top: 8px;
+      }
+
+      .sign-off {
+        margin-top: 50px;
+        border-top: 2px solid #e0e0e0;
+        padding-top: 30px;
+      }
+
+      .sign-off-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .sign-off-item {
+        text-align: center;
+      }
+
+      .sign-off-signature {
+        border-top: 2px solid #333;
+        height: 60px;
+        margin-bottom: 10px;
+      }
+
+      .sign-off-name {
+        font-weight: bold;
+      }
+
+      .sign-off-role {
+        font-size: 0.9em;
+        color: #666;
+      }
+
+      .toc {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 4px;
+        margin-bottom: 30px;
+      }
+
+      .toc h3 {
+        margin-top: 0;
+      }
+
+      .toc ol {
+        margin-bottom: 0;
+      }
+
+      .toc a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .toc a:hover {
+        text-decoration: underline;
+      }
+
+      .test-scenarios {
+        background-color: #f2f2f2;
+        border-left: 4px solid #00aa00;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+
+      .test-scenarios h4 {
+        color: #00aa00;
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      .test-case {
+        background-color: white;
+        border: 1px solid #ddd;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 3px;
+      }
+
+      .test-case-id {
+        font-weight: bold;
+        color: #00aa00;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .test-section {
+        margin: 10px 0;
+      }
+
+      .test-section-title {
+        font-weight: bold;
+        color: #333;
+        font-size: 0.95em;
+      }
+
+      .test-steps {
+        margin-left: 15px;
+        margin-top: 5px;
+      }
+
+      .test-steps ol {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .test-steps li {
+        margin-bottom: 5px;
+      }
+
+      .test-step-block {
+        margin-bottom: 20px;
+      }
+
+      .test-step-block:last-child {
+        margin-bottom: 0;
+      }
+
+      .test-step-text {
+        margin-bottom: 8px;
+      }
+
+      .wireframe-container {
+        background-color: #fafafa;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        margin: 12px 0;
+        overflow: hidden;
+        font-size: 0.9em;
+      }
+
+      .wireframe-header {
+        background-color: #2c2c2c;
+        color: white;
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 40px;
+      }
+
+      .wireframe-logo {
+        font-weight: bold;
+        font-size: 1.1em;
+      }
+
+      .wireframe-nav {
+        display: flex;
+        gap: 15px;
+        font-size: 0.85em;
+      }
+
+      .wireframe-main {
+        padding: 15px;
+        min-height: 250px;
+        background-color: white;
+      }
+
+      .wireframe-content {
+        overflow: auto;
+        background-color: white;
+      }
+
+      .wireframe-section {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .wireframe-section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: -10px -10px 10px -10px;
+        padding: 8px 10px;
+        background-color: #eee;
+        border-bottom: 1px solid #ddd;
+        border-radius: 3px 3px 0 0;
+      }
+
+      .wireframe-section-title {
+        font-weight: bold;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+        font-size: 0.95em;
+      }
+
+      .wireframe-section-header .wireframe-section-title {
+        margin-bottom: 0;
+      }
+
+      .wireframe-section-action {
+        font-size: 0.75em;
+        color: white;
+        background-color: #1a1a1a;
+        padding: 5px 11px;
+        border-radius: 3px;
+        white-space: nowrap;
+      }
+
+      .wireframe-item {
+        background-color: white;
+        border: 1px solid #ddd;
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 3px;
+        min-height: 25px;
+      }
+
+      .wireframe-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 5px 0;
+        background-color: white;
+      }
+
+      .wireframe-table th,
+      .wireframe-table td {
+        border: 1px solid #ddd;
+        padding: 8px 10px;
+        text-align: left;
+        font-size: 0.95em;
+      }
+
+      .wireframe-table th {
+        background-color: #1a1a1a;
+        font-weight: bold;
+      }
+
+      .wireframe-table tbody tr:nth-child(even) td {
+        background-color: #fafafa;
+      }
+
+      .wireframe-th-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .wireframe-sort-btn {
+        opacity: 0.7;
+        font-size: 0.8em;
+      }
+
+      .wireframe-filter-row th {
+        background-color: white;
+        padding: 6px 8px;
+      }
+
+      .wireframe-filter-input {
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 4px 6px;
+        font-size: 0.85em;
+        font-weight: normal;
+        color: #999;
+      }
+
+      .wireframe-button {
+        display: inline-block;
+        background-color: #1a1a1a;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 3px;
+        margin: 5px 5px 5px 0;
+        font-size: 0.85em;
+      }
+
+      .wireframe-button-secondary {
+        display: inline-block;
+        background-color: white;
+        color: #1a1a1a;
+        border: 1px solid #ccc;
+        padding: 5px 11px;
+        border-radius: 3px;
+        margin: 5px 5px 5px 0;
+        font-size: 0.85em;
+      }
+
+      .wireframe-footer {
+        background-color: #f5f5f5;
+        border-top: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+        font-size: 0.85em;
+        color: #666;
+      }
+
+      .wireframe-label {
+        font-weight: bold;
+        color: #666;
+        font-size: 0.8em;
+        margin-bottom: 3px;
+      }
+
+      .wireframe-form-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 5px 0;
+      }
+
+      .wireframe-form-row .wireframe-label {
+        width: 100px;
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+
+      .wireframe-form-row .wireframe-item {
+        flex: 1;
+        margin: 0;
+      }
+
+      .wireframe-form-row .wireframe-item:not(.wireframe-item-multiline) {
+        height: 25px;
+        padding: 0 8px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .page-break {
+        page-break-after: always;
+        margin: 40px 0;
+        border-bottom: 2px dashed #ddd;
+        padding-bottom: 40px;
+      }
+
+      @media print {
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
-            padding: 20px;
+          background-color: white;
+          padding: 0;
         }
-        
+
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        header {
-            border-bottom: 3px solid #1a1a1a;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-        }
-        
-        h1 {
-            color: #1a1a1a;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .meta-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 15px;
-            font-size: 0.95em;
-        }
-        
-        .meta-item {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .meta-label {
-            font-weight: bold;
-            color: #666;
-        }
-        
-        .meta-value {
-            color: #333;
-        }
-        
-        h2 {
-            color: #1a1a1a;
-            font-size: 1.8em;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        
-        h3 {
-            color: #333;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        ul, ol {
-            margin-left: 30px;
-            margin-bottom: 15px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            margin-top: 10px;
-        }
-        
-        table thead {
-            background-color: #1a1a1a;
-            color: white;
-        }
-        
-        table th,
-        table td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        
-        table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        table tbody tr:hover {
-            background-color: #f0f0f0;
-        }
-        
-        .requirement {
-            background-color: #f9f9f9;
-            border-left: 4px solid #0066cc;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        
-        .requirement-id {
-            font-weight: bold;
-            color: #0066cc;
-        }
-        
-        .requirement-description {
-            margin-top: 8px;
-        }
-        
-        .sign-off {
-            margin-top: 50px;
-            border-top: 2px solid #e0e0e0;
-            padding-top: 30px;
-        }
-        
-        .sign-off-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .sign-off-item {
-            text-align: center;
-        }
-        
-        .sign-off-signature {
-            border-top: 2px solid #333;
-            height: 60px;
-            margin-bottom: 10px;
-        }
-        
-        .sign-off-name {
-            font-weight: bold;
-        }
-        
-        .sign-off-role {
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        .toc {
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 4px;
-            margin-bottom: 30px;
-        }
-        
-        .toc h3 {
-            margin-top: 0;
-        }
-        
-        .toc ol {
-            margin-bottom: 0;
-        }
-        
-        .toc a {
-            color: inherit;
-            text-decoration: none;
-        }
-        
-        .toc a:hover {
-            text-decoration: underline;
-        }
-        
-        .test-scenarios {
-            background-color: #f2f2f2;
-            border-left: 4px solid #00aa00;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        
-        .test-scenarios h4 {
-            color: #00aa00;
-            margin-top: 0;
-            margin-bottom: 12px;
-        }
-        
-        .test-case {
-            background-color: white;
-            border: 1px solid #ddd;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 3px;
-        }
-        
-        .test-case-id {
-            font-weight: bold;
-            color: #00aa00;
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        .test-section {
-            margin: 10px 0;
-        }
-        
-        .test-section-title {
-            font-weight: bold;
-            color: #333;
-            font-size: 0.95em;
-        }
-        
-        .test-steps {
-            margin-left: 15px;
-            margin-top: 5px;
-        }
-        
-        .test-steps ol {
-            margin: 0;
-            padding-left: 20px;
-        }
-        
-        .test-steps li {
-            margin-bottom: 5px;
-        }
-        
-        .test-step-block {
-            margin-bottom: 20px;
-        }
-        
-        .test-step-block:last-child {
-            margin-bottom: 0;
-        }
-        
-        .test-step-text {
-            margin-bottom: 8px;
-        }
-        
-        .wireframe-container {
-            background-color: #fafafa;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            margin: 12px 0;
-            overflow: hidden;
-            font-size: 0.9em;
-        }
-        
-        .wireframe-header {
-            background-color: #2c2c2c;
-            color: white;
-            padding: 12px;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 40px;
-        }
-        
-        .wireframe-logo {
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-        
-        .wireframe-nav {
-            display: flex;
-            gap: 15px;
-            font-size: 0.85em;
-        }
-        
-        .wireframe-main {
-            padding: 15px;
-            min-height: 250px;
-            background-color: white;
-        }
-        
-        .wireframe-content {
-            overflow: auto;
-            background-color: white;
-        }
-        
-        .wireframe-section {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .wireframe-section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: -10px -10px 10px -10px;
-            padding: 8px 10px;
-            background-color: #eee;
-            border-bottom: 1px solid #ddd;
-            border-radius: 3px 3px 0 0;
-        }
-        
-        .wireframe-section-title {
-            font-weight: bold;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-        }
-        
-        .wireframe-section-header .wireframe-section-title {
-            margin-bottom: 0;
-        }
-        
-        .wireframe-section-action {
-            font-size: 0.75em;
-            color: white;
-            background-color: #1a1a1a;
-            padding: 5px 11px;
-            border-radius: 3px;
-            white-space: nowrap;
-        }
-        
-        .wireframe-item {
-            background-color: white;
-            border: 1px solid #ddd;
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 3px;
-            min-height: 25px;
-        }
-        
-        .wireframe-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 5px 0;
-            background-color: white;
-        }
-        
-        .wireframe-table th,
-        .wireframe-table td {
-            border: 1px solid #ddd;
-            padding: 8px 10px;
-            text-align: left;
-            font-size: 0.95em;
-        }
-        
-        .wireframe-table th {
-            background-color: #1a1a1a;
-            font-weight: bold;
-        }
-        
-        .wireframe-table tbody tr:nth-child(even) td {
-            background-color: #fafafa;
-        }
-        
-        .wireframe-th-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .wireframe-sort-btn {
-            opacity: 0.7;
-            font-size: 0.8em;
-        }
-        
-        .wireframe-filter-row th {
-            background-color: white;
-            padding: 6px 8px;
-        }
-        
-        .wireframe-filter-input {
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            padding: 4px 6px;
-            font-size: 0.85em;
-            font-weight: normal;
-            color: #999;
-        }
-        
-        .wireframe-button {
-            display: inline-block;
-            background-color: #1a1a1a;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 3px;
-            margin: 5px 5px 5px 0;
-            font-size: 0.85em;
-        }
-        
-        .wireframe-button-secondary {
-            display: inline-block;
-            background-color: white;
-            color: #1a1a1a;
-            border: 1px solid #ccc;
-            padding: 5px 11px;
-            border-radius: 3px;
-            margin: 5px 5px 5px 0;
-            font-size: 0.85em;
-        }
-        
-        .wireframe-footer {
-            background-color: #f5f5f5;
-            border-top: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-            font-size: 0.85em;
-            color: #666;
-        }
-        
-        .wireframe-label {
-            font-weight: bold;
-            color: #666;
-            font-size: 0.8em;
-            margin-bottom: 3px;
-        }
-        
-        .wireframe-form-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 5px 0;
-        }
-        
-        .wireframe-form-row .wireframe-label {
-            width: 100px;
-            flex-shrink: 0;
-            margin-bottom: 0;
-        }
-        
-        .wireframe-form-row .wireframe-item {
-            flex: 1;
-            margin: 0;
-        }
-        
-        .page-break {
-            page-break-after: always;
-            margin: 40px 0;
-            border-bottom: 2px dashed #ddd;
-            padding-bottom: 40px;
-        }
-        
-        @media print {
-            body {
-                background-color: white;
-                padding: 0;
-            }
-            
-            .container {
-                max-width: 100%;
-                box-shadow: none;
-                padding: 0;
-            }
-        }
+          max-width: 100%;
+          box-shadow: none;
+          padding: 0;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Requirements Specification</h1>
-            <div class="meta-info">
-                <div class="meta-item">
-                    <span class="meta-label">Project:</span>
-                    <span class="meta-value">[Project Name]</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Version:</span>
-                    <span class="meta-value">1.0</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Date:</span>
-                    <span class="meta-value">[Date]</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Status:</span>
-                    <span class="meta-value">Draft</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Author:</span>
-                    <span class="meta-value">[Author Name]</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Stakeholders:</span>
-                    <span class="meta-value">[Names]</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- Table of Contents -->
-        <div class="toc">
-            <h3>Table of Contents</h3>
-            <ol>
-                <li><a href="#executive-summary">Executive Summary</a></li>
-                <li><a href="#project-overview">Project Overview</a></li>
-                <li><a href="#functional-requirements">Functional Requirements</a></li>
-                <li><a href="#non-functional-requirements">Non-Functional Requirements</a></li>
-                <li><a href="#technical-specifications">Technical Specifications</a></li>
-                <li><a href="#constraints-assumptions">Constraints & Assumptions</a></li>
-                <li><a href="#dependencies-risks">Dependencies & Risks</a></li>
-                <li><a href="#change-history">Change History</a></li>
-                <li><a href="#approvals">Approvals</a></li>
-            </ol>
+      <!-- Header -->
+      <header>
+        <h1>Requirements Specification</h1>
+        <div class="meta-info">
+          <div class="meta-item">
+            <span class="meta-label">Project:</span>
+            <span class="meta-value">[Project Name]</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Version:</span>
+            <span class="meta-value">1.0</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Date:</span>
+            <span class="meta-value">[Date]</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Status:</span>
+            <span class="meta-value">Draft</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Author:</span>
+            <span class="meta-value">[Author Name]</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Stakeholders:</span>
+            <span class="meta-value">[Names]</span>
+          </div>
         </div>
+      </header>
 
-        <!-- Executive Summary -->
-        <h2 id="executive-summary">1. Executive Summary</h2>
-        <p>
-            [Provide a brief overview of the project, its objectives, and the scope of this requirements document. 
-            This section should be understandable to all stakeholders, including non-technical personnel.]
-        </p>
-        <p><strong>Key Objectives:</strong></p>
-        <ul>
-            <li>[Objective 1]</li>
-            <li>[Objective 2]</li>
-            <li>[Objective 3]</li>
-        </ul>
+      <!-- Table of Contents -->
+      <div class="toc">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#executive-summary">Executive Summary</a></li>
+          <li><a href="#project-overview">Project Overview</a></li>
+          <li>
+            <a href="#functional-requirements">Functional Requirements</a>
+          </li>
+          <li>
+            <a href="#non-functional-requirements"
+              >Non-Functional Requirements</a
+            >
+          </li>
+          <li>
+            <a href="#technical-specifications">Technical Specifications</a>
+          </li>
+          <li>
+            <a href="#constraints-assumptions">Constraints & Assumptions</a>
+          </li>
+          <li><a href="#dependencies-risks">Dependencies & Risks</a></li>
+          <li><a href="#change-history">Change History</a></li>
+          <li><a href="#approvals">Approvals</a></li>
+        </ol>
+      </div>
 
-        <!-- Project Overview -->
-        <h2 id="project-overview">2. Project Overview</h2>
-        
-        <h3>2.1 Background</h3>
-        <p>
-            [Provide context and background information about why this project is needed. 
-            Describe the current situation and problems that need to be addressed.]
-        </p>
-        
-        <h3>2.2 Scope</h3>
-        <p><strong>In Scope:</strong></p>
-        <ul>
-            <li>[Feature/Functionality 1]</li>
-            <li>[Feature/Functionality 2]</li>
-            <li>[Feature/Functionality 3]</li>
-        </ul>
-        <p><strong>Out of Scope:</strong></p>
-        <ul>
-            <li>[What is explicitly excluded]</li>
-            <li>[Future enhancements]</li>
-        </ul>
-        
-        <h3>2.3 Target Users</h3>
-        <ul>
-            <li><strong>User Role 1:</strong> [Description]</li>
-            <li><strong>User Role 2:</strong> [Description]</li>
-            <li><strong>User Role 3:</strong> [Description]</li>
-        </ul>
+      <!-- Executive Summary -->
+      <h2 id="executive-summary">1. Executive Summary</h2>
+      <p>
+        [Provide a brief overview of the project, its objectives, and the scope
+        of this requirements document. This section should be understandable to
+        all stakeholders, including non-technical personnel.]
+      </p>
+      <p><strong>Key Objectives:</strong></p>
+      <ul>
+        <li>[Objective 1]</li>
+        <li>[Objective 2]</li>
+        <li>[Objective 3]</li>
+      </ul>
 
-        <!-- Functional Requirements -->
-        <h2 id="functional-requirements">3. Functional Requirements</h2>
-        <p>
-            The following section details the specific functional requirements for this project. 
-            Each requirement is assigned a unique identifier for traceability.
-        </p>
-        
-        <h3>3.1 Core Features</h3>
-        
-        <div class="requirement">
-            <span class="requirement-id">FR-001: [Feature Title]</span>
-            <div class="requirement-description">
-                <p><strong>Description:</strong> [Clear description of what the system should do]</p>
-                <p><strong>Related User Role:</strong> [User Role]</p>
+      <!-- Project Overview -->
+      <h2 id="project-overview">2. Project Overview</h2>
+
+      <h3>2.1 Background</h3>
+      <p>
+        [Provide context and background information about why this project is
+        needed. Describe the current situation and problems that need to be
+        addressed.]
+      </p>
+
+      <h3>2.2 Scope</h3>
+      <p><strong>In Scope:</strong></p>
+      <ul>
+        <li>[Feature/Functionality 1]</li>
+        <li>[Feature/Functionality 2]</li>
+        <li>[Feature/Functionality 3]</li>
+      </ul>
+      <p><strong>Out of Scope:</strong></p>
+      <ul>
+        <li>[What is explicitly excluded]</li>
+        <li>[Future enhancements]</li>
+      </ul>
+
+      <h3>2.3 Target Users</h3>
+      <ul>
+        <li><strong>User Role 1:</strong> [Description]</li>
+        <li><strong>User Role 2:</strong> [Description]</li>
+        <li><strong>User Role 3:</strong> [Description]</li>
+      </ul>
+
+      <!-- Functional Requirements -->
+      <h2 id="functional-requirements">3. Functional Requirements</h2>
+      <p>
+        The following section details the specific functional requirements for
+        this project. Each requirement is assigned a unique identifier for
+        traceability.
+      </p>
+
+      <h3>3.1 Core Features</h3>
+
+      <div class="requirement">
+        <span class="requirement-id">FR-001: [Feature Title]</span>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> [Clear description of what the system
+            should do]
+          </p>
+          <p><strong>Related User Role:</strong> [User Role]</p>
+        </div>
+        <div class="test-scenarios">
+          <h4>Manual Testing Scenarios</h4>
+          <div class="test-case">
+            <span class="test-case-id">TC-001-001: [Test Case Title]</span>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                [Describe the initial state or setup required]
+              </p>
             </div>
-            <div class="test-scenarios">
-                <h4>Manual Testing Scenarios</h4>
-                <div class="test-case">
-                    <span class="test-case-id">TC-001-001: [Test Case Title]</span>
-                    <div class="test-section">
-                        <span class="test-section-title">Precondition:</span>
-                        <p style="margin: 5px 0 0 0;">[Describe the initial state or setup required]</p>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> [Step 1]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">CRM System</div>
+                      <div class="wireframe-nav">
+                        <div>Dashboard</div>
+                        <div>Entities</div>
+                        <div>Reports</div>
+                      </div>
                     </div>
-                    <div class="test-section">
-                        <span class="test-section-title">Test Steps:</span>
-                        <div class="test-steps">
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">CRM System</div>
-                                        <div class="wireframe-nav">
-                                            <div>Dashboard</div>
-                                            <div>Entities</div>
-                                            <div>Reports</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">Business Entities (24)</div>
-                                                    <div class="wireframe-section-action">+ New Entity</div>
-                                                </div>
-                                                <table class="wireframe-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th><div class="wireframe-th-content">Name <span class="wireframe-sort-btn">⇅</span></div></th>
-                                                            <th><div class="wireframe-th-content">Type <span class="wireframe-sort-btn">⇅</span></div></th>
-                                                            <th><div class="wireframe-th-content">Status <span class="wireframe-sort-btn">⇅</span></div></th>
-                                                        </tr>
-                                                        <tr class="wireframe-filter-row">
-                                                            <th><div class="wireframe-filter-input">Filter name...</div></th>
-                                                            <th><div class="wireframe-filter-input">Filter type...</div></th>
-                                                            <th><div class="wireframe-filter-input">Filter status...</div></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Acme Corporation</td>
-                                                            <td>Customer</td>
-                                                            <td>Active</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Globex Industries</td>
-                                                            <td>Supplier</td>
-                                                            <td>Active</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Initech LLC</td>
-                                                            <td>Partner</td>
-                                                            <td>Inactive</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Umbrella Corp</td>
-                                                            <td>Customer</td>
-                                                            <td>Pending</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer" style="text-align: right;">
-                                        © 2026 CRM System | Privacy Policy | Terms of Service
-                                    </div>
-                                </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              Business Entities (24)
                             </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">CRM System</div>
-                                        <div class="wireframe-nav">
-                                            <div>Dashboard</div>
-                                            <div>Entities</div>
-                                            <div>Reports</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">New Entity</div>
-                                                </div>
-                                                <div class="wireframe-form-row">
-                                                    <div class="wireframe-label">Name</div>
-                                                    <div class="wireframe-item"></div>
-                                                </div>
-                                                <div class="wireframe-form-row">
-                                                    <div class="wireframe-label">Type</div>
-                                                    <div class="wireframe-item"></div>
-                                                </div>
-                                                <div class="wireframe-form-row">
-                                                    <div class="wireframe-label">Status</div>
-                                                    <div class="wireframe-item"></div>
-                                                </div>
-                                            </div>
-                                            <div style="text-align: right; margin-top: 20px;">
-                                                <div class="wireframe-button">Save</div>
-                                                <div class="wireframe-button-secondary">Cancel</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © 2026 CRM System | Privacy Policy | Terms of Service
-                                    </div>
-                                </div>
+                            <div class="wireframe-section-action">
+                              + New Entity
                             </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 3:</strong> [Step 3]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 4:</strong> [Step 4]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
+                          </div>
+                          <table class="wireframe-table">
+                            <thead>
+                              <tr>
+                                <th>
+                                  <div class="wireframe-th-content">
+                                    Name
+                                    <span class="wireframe-sort-btn">⇅</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="wireframe-th-content">
+                                    Type
+                                    <span class="wireframe-sort-btn">⇅</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="wireframe-th-content">
+                                    Status
+                                    <span class="wireframe-sort-btn">⇅</span>
+                                  </div>
+                                </th>
+                              </tr>
+                              <tr class="wireframe-filter-row">
+                                <th>
+                                  <div class="wireframe-filter-input">
+                                    Filter name...
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="wireframe-filter-input">
+                                    Filter type...
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="wireframe-filter-input">
+                                    Filter status...
+                                  </div>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Acme Corporation</td>
+                                <td>Customer</td>
+                                <td>Active</td>
+                              </tr>
+                              <tr>
+                                <td>Globex Industries</td>
+                                <td>Supplier</td>
+                                <td>Active</td>
+                              </tr>
+                              <tr>
+                                <td>Initech LLC</td>
+                                <td>Partner</td>
+                                <td>Inactive</td>
+                              </tr>
+                              <tr>
+                                <td>Umbrella Corp</td>
+                                <td>Customer</td>
+                                <td>Pending</td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
+                      </div>
                     </div>
-                    <div class="test-section">
-                        <span class="test-section-title">Expected Result:</span>
-                        <p style="margin: 5px 0 0 0;">[What the user should observe]</p>
+                    <div class="wireframe-footer" style="text-align: right">
+                      © 2026 CRM System | Privacy Policy | Terms of Service
                     </div>
+                  </div>
                 </div>
-                <div class="test-case">
-                    <span class="test-case-id">TC-001-002: [Alternative Scenario]</span>
-                    <div class="test-section">
-                        <span class="test-section-title">Precondition:</span>
-                        <p style="margin: 5px 0 0 0;">[Describe the initial state or setup required]</p>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> [Step 2]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">CRM System</div>
+                      <div class="wireframe-nav">
+                        <div>Dashboard</div>
+                        <div>Entities</div>
+                        <div>Reports</div>
+                      </div>
                     </div>
-                    <div class="test-section">
-                        <span class="test-section-title">Test Steps:</span>
-                        <div class="test-steps">
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              New Entity
                             </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">Name</div>
+                            <div class="wireframe-item"></div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">Type</div>
+                            <div class="wireframe-item"></div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">Status</div>
+                            <div class="wireframe-item"></div>
+                          </div>
                         </div>
-                    </div>
-                    <div class="test-section">
-                        <span class="test-section-title">Expected Result:</span>
-                        <p style="margin: 5px 0 0 0;">[What the user should observe]</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="requirement">
-            <span class="requirement-id">FR-002: [Feature Title]</span>
-            <div class="requirement-description">
-                <p><strong>Description:</strong> [Clear description of what the system should do]</p>
-                <p><strong>Related User Role:</strong> [User Role]</p>
-            </div>
-            <div class="test-scenarios">
-                <h4>Manual Testing Scenarios</h4>
-                <div class="test-case">
-                    <span class="test-case-id">TC-002-001: [Test Case Title]</span>
-                    <div class="test-section">
-                        <span class="test-section-title">Precondition:</span>
-                        <p style="margin: 5px 0 0 0;">[Describe the initial state or setup required]</p>
-                    </div>
-                    <div class="test-section">
-                        <span class="test-section-title">Test Steps:</span>
-                        <div class="test-steps">
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 3:</strong> [Step 3]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
+                        <div style="text-align: right; margin-top: 20px">
+                          <div class="wireframe-button">Save</div>
+                          <div class="wireframe-button-secondary">Cancel</div>
                         </div>
+                      </div>
                     </div>
-                    <div class="test-section">
-                        <span class="test-section-title">Expected Result:</span>
-                        <p style="margin: 5px 0 0 0;">[What the user should observe]</p>
+                    <div class="wireframe-footer">
+                      © 2026 CRM System | Privacy Policy | Terms of Service
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="requirement">
-            <span class="requirement-id">FR-003: [Feature Title]</span>
-            <div class="requirement-description">
-                <p><strong>Description:</strong> [Clear description of what the system should do]</p>
-                <p><strong>Related User Role:</strong> [User Role]</p>
-            </div>
-            <div class="test-scenarios">
-                <h4>Manual Testing Scenarios</h4>
-                <div class="test-case">
-                    <span class="test-case-id">TC-003-001: [Test Case Title]</span>
-                    <div class="test-section">
-                        <span class="test-section-title">Precondition:</span>
-                        <p style="margin: 5px 0 0 0;">[Describe the initial state or setup required]</p>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> [Step 3]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
                     </div>
-                    <div class="test-section">
-                        <span class="test-section-title">Test Steps:</span>
-                        <div class="test-steps">
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
                             </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
                         </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="test-section">
-                        <span class="test-section-title">Expected Result:</span>
-                        <p style="margin: 5px 0 0 0;">[What the user should observe]</p>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
                     </div>
+                  </div>
                 </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 4:</strong> [Step 4]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
+                    </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
+                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-
-        <!-- Non-Functional Requirements -->
-        <h2 id="non-functional-requirements">4. Non-Functional Requirements</h2>
-        
-        <h3>4.1 Performance</h3>
-        <ul>
-            <li>Response time for [operation]: [time] milliseconds</li>
-            <li>System throughput: [number] transactions per second</li>
-            <li>Data load time: [time]</li>
-        </ul>
-        
-        <h3>4.2 Scalability</h3>
-        <p>
-            [Describe how the system should handle increased load. Include expected user capacity, 
-            data volume growth, and expected peak usage patterns.]
-        </p>
-        
-        <h3>4.3 Security</h3>
-        <ul>
-            <li>Authentication: [Method - e.g., OAuth 2.0, LDAP]</li>
-            <li>Authorization: [Role-based access control (RBAC), Attribute-based, etc.]</li>
-            <li>Data Encryption: [In transit and at rest requirements]</li>
-            <li>Compliance: [GDPR, HIPAA, PCI-DSS, etc.]</li>
-        </ul>
-        
-        <h3>4.4 Reliability & Availability</h3>
-        <ul>
-            <li>Uptime SLA: [percentage]</li>
-            <li>Mean Time To Recovery (MTTR): [time]</li>
-            <li>Backup Strategy: [description]</li>
-        </ul>
-        
-        <h3>4.5 Usability</h3>
-        <ul>
-            <li>Browser compatibility: [List of supported browsers]</li>
-            <li>Accessibility: [WCAG 2.1 Level AA compliance]</li>
-            <li>Response to user interactions: [time] seconds</li>
-        </ul>
-        
-        <h3>4.6 Maintainability</h3>
-        <ul>
-            <li>Code documentation: [Required standards]</li>
-            <li>Testing coverage: [Target percentage]</li>
-            <li>Technology stack: [Listed technologies]</li>
-        </ul>
-
-        <!-- Technical Specifications -->
-        <h2 id="technical-specifications">6. Technical Specifications</h2>
-        
-        <h3>6.1 Architecture</h3>
-        <p>
-            [Describe the high-level system architecture. Include diagrams or references if available.]
-        </p>
-        
-        <h3>6.2 Technology Stack</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Layer</th>
-                    <th>Technology</th>
-                    <th>Version</th>
-                    <th>Justification</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Frontend</td>
-                    <td>[Technology]</td>
-                    <td>[Version]</td>
-                    <td>[Reason for selection]</td>
-                </tr>
-                <tr>
-                    <td>Backend</td>
-                    <td>[Technology]</td>
-                    <td>[Version]</td>
-                    <td>[Reason for selection]</td>
-                </tr>
-                <tr>
-                    <td>Database</td>
-                    <td>[Technology]</td>
-                    <td>[Version]</td>
-                    <td>[Reason for selection]</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>6.3 Database Schema (Summary)</h3>
-        <p>[Describe main entities and their relationships. Include detailed schema diagrams separately if needed.]</p>
-        
-        <h3>6.4 API Specifications</h3>
-        <p>
-            [Describe key API endpoints, request/response formats, and authentication methods. 
-            Reference OpenAPI/Swagger documentation if available.]
-        </p>
-        
-        <h3>6.5 Integration Points</h3>
-        <ul>
-            <li>[External system 1]: [Integration method and description]</li>
-            <li>[External system 2]: [Integration method and description]</li>
-        </ul>
-
-        <!-- Constraints & Assumptions -->
-        <h2 id="constraints-assumptions">7. Constraints & Assumptions</h2>
-        
-        <h3>7.1 Constraints</h3>
-        <ul>
-            <li><strong>Budget:</strong> [Budget constraints if any]</li>
-            <li><strong>Timeline:</strong> [Deadline or timeline constraints]</li>
-            <li><strong>Resource:</strong> [Team size, skills, available resources]</li>
-            <li><strong>Technical:</strong> [Technical limitations or restrictions]</li>
-            <li><strong>Regulatory:</strong> [Legal, compliance, or regulatory constraints]</li>
-        </ul>
-        
-        <h3>7.2 Assumptions</h3>
-        <ul>
-            <li>[Assumption 1 - What we're assuming to be true]</li>
-            <li>[Assumption 2 - What we're assuming to be true]</li>
-            <li>[Assumption 3 - What we're assuming to be true]</li>
-        </ul>
-
-        <!-- Dependencies -->
-        <h2 id="dependencies-risks">8. Dependencies & Risks</h2>
-        
-        <h3>8.1 External Dependencies</h3>
-        <ul>
-            <li>[Dependency 1]: [Impact if not available]</li>
-            <li>[Dependency 2]: [Impact if not available]</li>
-        </ul>
-        
-        <h3>8.2 Known Risks</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Risk</th>
-                    <th>Probability</th>
-                    <th>Impact</th>
-                    <th>Mitigation Strategy</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>[Risk description]</td>
-                    <td>High/Medium/Low</td>
-                    <td>High/Medium/Low</td>
-                    <td>[How to mitigate]</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Change History -->
-        <h2 id="change-history">9. Change History</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Version</th>
-                    <th>Date</th>
-                    <th>Author</th>
-                    <th>Changes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1.0</td>
-                    <td>[Date]</td>
-                    <td>[Author]</td>
-                    <td>Initial version</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Sign-Off -->
-        <div class="sign-off">
-            <h2 id="approvals">9. Approvals & Sign-Off</h2>
-            <p>
-                By signing below, the approvers confirm that they have reviewed this Requirements Specification 
-                and agree with its contents.
-            </p>
-            
-            <div class="sign-off-row">
-                <div class="sign-off-item">
-                    <div class="sign-off-signature"></div>
-                    <div class="sign-off-name">Product Manager</div>
-                    <div class="sign-off-role">Date: ___________</div>
-                </div>
-                <div class="sign-off-item">
-                    <div class="sign-off-signature"></div>
-                    <div class="sign-off-name">Technical Lead</div>
-                    <div class="sign-off-role">Date: ___________</div>
-                </div>
-                <div class="sign-off-item">
-                    <div class="sign-off-signature"></div>
-                    <div class="sign-off-name">Project Manager</div>
-                    <div class="sign-off-role">Date: ___________</div>
-                </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">[What the user should observe]</p>
             </div>
+          </div>
+          <div class="test-case">
+            <span class="test-case-id">TC-001-002: [Alternative Scenario]</span>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                [Describe the initial state or setup required]
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> [Step 1]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
+                    </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
+                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
+                    </div>
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> [Step 2]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
+                    </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
+                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">[What the user should observe]</p>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="requirement">
+        <span class="requirement-id">FR-002: [Feature Title]</span>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> [Clear description of what the system
+            should do]
+          </p>
+          <p><strong>Related User Role:</strong> [User Role]</p>
+        </div>
+        <div class="test-scenarios">
+          <h4>Manual Testing Scenarios</h4>
+          <div class="test-case">
+            <span class="test-case-id">TC-002-001: [Test Case Title]</span>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                [Describe the initial state or setup required]
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> [Step 1]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
+                    </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
+                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
+                    </div>
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> [Step 2]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
+                    </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
+                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
+                    </div>
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> [Step 3]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
+                    </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
+                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">[What the user should observe]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirement">
+        <span class="requirement-id">FR-003: [Feature Title]</span>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> [Clear description of what the system
+            should do]
+          </p>
+          <p><strong>Related User Role:</strong> [User Role]</p>
+        </div>
+        <div class="test-scenarios">
+          <h4>Manual Testing Scenarios</h4>
+          <div class="test-case">
+            <span class="test-case-id">TC-003-001: [Test Case Title]</span>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                [Describe the initial state or setup required]
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> [Step 1]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
+                    </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
+                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
+                    </div>
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> [Step 2]
+                  </div>
+                  <div class="wireframe-container">
+                    <div class="wireframe-header">
+                      <div class="wireframe-logo">[App Logo/Name]</div>
+                      <div class="wireframe-nav">
+                        <div>[Nav Item 1]</div>
+                        <div>[Nav Item 2]</div>
+                        <div>[Nav Item 3]</div>
+                      </div>
+                    </div>
+                    <div class="wireframe-main">
+                      <div class="wireframe-content">
+                        <div class="wireframe-section">
+                          <div class="wireframe-section-header">
+                            <div class="wireframe-section-title">
+                              [Page Section Title]
+                            </div>
+                            <div class="wireframe-section-action">[Action]</div>
+                          </div>
+                          <div class="wireframe-item">[Content Area 1]</div>
+                          <div class="wireframe-item">[Content Area 2]</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                          <div class="wireframe-button">[Action Button]</div>
+                          <div class="wireframe-button-secondary">
+                            [Secondary Button]
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wireframe-footer">
+                      © [Year] [Company Name] | [Footer Links]
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">[What the user should observe]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Functional Requirements -->
+      <h2 id="non-functional-requirements">4. Non-Functional Requirements</h2>
+
+      <h3>4.1 Performance</h3>
+      <ul>
+        <li>Response time for [operation]: [time] milliseconds</li>
+        <li>System throughput: [number] transactions per second</li>
+        <li>Data load time: [time]</li>
+      </ul>
+
+      <h3>4.2 Scalability</h3>
+      <p>
+        [Describe how the system should handle increased load. Include expected
+        user capacity, data volume growth, and expected peak usage patterns.]
+      </p>
+
+      <h3>4.3 Security</h3>
+      <ul>
+        <li>Authentication: [Method - e.g., OAuth 2.0, LDAP]</li>
+        <li>
+          Authorization: [Role-based access control (RBAC), Attribute-based,
+          etc.]
+        </li>
+        <li>Data Encryption: [In transit and at rest requirements]</li>
+        <li>Compliance: [GDPR, HIPAA, PCI-DSS, etc.]</li>
+      </ul>
+
+      <h3>4.4 Reliability & Availability</h3>
+      <ul>
+        <li>Uptime SLA: [percentage]</li>
+        <li>Mean Time To Recovery (MTTR): [time]</li>
+        <li>Backup Strategy: [description]</li>
+      </ul>
+
+      <h3>4.5 Usability</h3>
+      <ul>
+        <li>Browser compatibility: [List of supported browsers]</li>
+        <li>Accessibility: [WCAG 2.1 Level AA compliance]</li>
+        <li>Response to user interactions: [time] seconds</li>
+      </ul>
+
+      <h3>4.6 Maintainability</h3>
+      <ul>
+        <li>Code documentation: [Required standards]</li>
+        <li>Testing coverage: [Target percentage]</li>
+        <li>Technology stack: [Listed technologies]</li>
+      </ul>
+
+      <!-- Technical Specifications -->
+      <h2 id="technical-specifications">6. Technical Specifications</h2>
+
+      <h3>6.1 Architecture</h3>
+      <p>
+        [Describe the high-level system architecture. Include diagrams or
+        references if available.]
+      </p>
+
+      <h3>6.2 Technology Stack</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Technology</th>
+            <th>Version</th>
+            <th>Justification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Frontend</td>
+            <td>[Technology]</td>
+            <td>[Version]</td>
+            <td>[Reason for selection]</td>
+          </tr>
+          <tr>
+            <td>Backend</td>
+            <td>[Technology]</td>
+            <td>[Version]</td>
+            <td>[Reason for selection]</td>
+          </tr>
+          <tr>
+            <td>Database</td>
+            <td>[Technology]</td>
+            <td>[Version]</td>
+            <td>[Reason for selection]</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>6.3 Database Schema (Summary)</h3>
+      <p>
+        [Describe main entities and their relationships. Include detailed schema
+        diagrams separately if needed.]
+      </p>
+
+      <h3>6.4 API Specifications</h3>
+      <p>
+        [Describe key API endpoints, request/response formats, and
+        authentication methods. Reference OpenAPI/Swagger documentation if
+        available.]
+      </p>
+
+      <h3>6.5 Integration Points</h3>
+      <ul>
+        <li>[External system 1]: [Integration method and description]</li>
+        <li>[External system 2]: [Integration method and description]</li>
+      </ul>
+
+      <!-- Constraints & Assumptions -->
+      <h2 id="constraints-assumptions">7. Constraints & Assumptions</h2>
+
+      <h3>7.1 Constraints</h3>
+      <ul>
+        <li><strong>Budget:</strong> [Budget constraints if any]</li>
+        <li><strong>Timeline:</strong> [Deadline or timeline constraints]</li>
+        <li>
+          <strong>Resource:</strong> [Team size, skills, available resources]
+        </li>
+        <li>
+          <strong>Technical:</strong> [Technical limitations or restrictions]
+        </li>
+        <li>
+          <strong>Regulatory:</strong> [Legal, compliance, or regulatory
+          constraints]
+        </li>
+      </ul>
+
+      <h3>7.2 Assumptions</h3>
+      <ul>
+        <li>[Assumption 1 - What we're assuming to be true]</li>
+        <li>[Assumption 2 - What we're assuming to be true]</li>
+        <li>[Assumption 3 - What we're assuming to be true]</li>
+      </ul>
+
+      <!-- Dependencies -->
+      <h2 id="dependencies-risks">8. Dependencies & Risks</h2>
+
+      <h3>8.1 External Dependencies</h3>
+      <ul>
+        <li>[Dependency 1]: [Impact if not available]</li>
+        <li>[Dependency 2]: [Impact if not available]</li>
+      </ul>
+
+      <h3>8.2 Known Risks</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Risk</th>
+            <th>Probability</th>
+            <th>Impact</th>
+            <th>Mitigation Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>[Risk description]</td>
+            <td>High/Medium/Low</td>
+            <td>High/Medium/Low</td>
+            <td>[How to mitigate]</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Change History -->
+      <h2 id="change-history">9. Change History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Date</th>
+            <th>Author</th>
+            <th>Changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.0</td>
+            <td>[Date]</td>
+            <td>[Author]</td>
+            <td>Initial version</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Sign-Off -->
+      <div class="sign-off">
+        <h2 id="approvals">9. Approvals & Sign-Off</h2>
+        <p>
+          By signing below, the approvers confirm that they have reviewed this
+          Requirements Specification and agree with its contents.
+        </p>
+
+        <div class="sign-off-row">
+          <div class="sign-off-item">
+            <div class="sign-off-signature"></div>
+            <div class="sign-off-name">Product Manager</div>
+            <div class="sign-off-role">Date: ___________</div>
+          </div>
+          <div class="sign-off-item">
+            <div class="sign-off-signature"></div>
+            <div class="sign-off-name">Technical Lead</div>
+            <div class="sign-off-role">Date: ___________</div>
+          </div>
+          <div class="sign-off-item">
+            <div class="sign-off-signature"></div>
+            <div class="sign-off-name">Project Manager</div>
+            <div class="sign-off-role">Date: ___________</div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

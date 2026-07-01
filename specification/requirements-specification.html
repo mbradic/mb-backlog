@@ -354,6 +354,15 @@
         min-height: 25px;
       }
 
+      .wireframe-item-multiline {
+        min-height: 60px;
+        white-space: normal;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+      }
+
       .wireframe-table {
         width: 100%;
         border-collapse: collapse;
@@ -471,6 +480,10 @@
         margin: 5px 0;
       }
 
+      .wireframe-form-row-top {
+        align-items: flex-start;
+      }
+
       .wireframe-form-row .wireframe-label {
         width: 100px;
         flex-shrink: 0;
@@ -480,6 +493,22 @@
       .wireframe-form-row .wireframe-item {
         flex: 1;
         margin: 0;
+      }
+
+      .wireframe-form-row .wireframe-item:not(.wireframe-item-multiline) {
+        height: 25px;
+        padding: 0 8px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .wireframe-validation-message {
+        color: #cc0000;
+        font-size: 0.8em;
+        margin-top: -3px;
       }
 
       .wireframe-badge {
@@ -966,7 +995,7 @@
                             </div>
                           </div>
                           <div class="wireframe-item">
-                            No backlog items yet. Click "+ Add" to create your
+                            No backlog items yet. Click "Add" to create your
                             first one.
                           </div>
                         </div>
@@ -983,8 +1012,8 @@
             <div class="test-section">
               <span class="test-section-title">Expected Result:</span>
               <p style="margin: 5px 0 0 0">
-                An empty-state message is shown instead of a table, and the "+
-                Add" action remains available.
+                An empty-state message is shown instead of a table, and the
+                "Add" action remains available.
               </p>
             </div>
           </div>
@@ -1016,8 +1045,8 @@
               <div class="test-steps">
                 <div class="test-step-block">
                   <div class="test-step-text">
-                    <strong>Step 1:</strong> Click the "+ Add" button to open
-                    the add form.
+                    <strong>Step 1:</strong> Click the "Add" button to open the
+                    add form.
                   </div>
                   <div class="wireframe-container">
                     <div class="wireframe-header">
@@ -1040,9 +1069,13 @@
                               Plan summer vacation
                             </div>
                           </div>
-                          <div class="wireframe-form-row">
+                          <div
+                            class="wireframe-form-row wireframe-form-row-top"
+                          >
                             <div class="wireframe-label">Description</div>
-                            <div class="wireframe-item">
+                            <div
+                              class="wireframe-item wireframe-item-multiline"
+                            >
                               Research destinations and budget
                             </div>
                           </div>
@@ -1252,14 +1285,22 @@
                             <div class="wireframe-label">Title</div>
                             <div
                               class="wireframe-item"
-                              style="border-color: #cc0000; color: #cc0000"
-                            >
+                              style="border-color: #cc0000"
+                            ></div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label"></div>
+                            <div class="wireframe-validation-message">
                               Title is required
                             </div>
                           </div>
-                          <div class="wireframe-form-row">
+                          <div
+                            class="wireframe-form-row wireframe-form-row-top"
+                          >
                             <div class="wireframe-label">Description</div>
-                            <div class="wireframe-item"></div>
+                            <div
+                              class="wireframe-item wireframe-item-multiline"
+                            ></div>
                           </div>
                         </div>
                         <div style="text-align: right; margin-top: 20px">
@@ -1335,9 +1376,13 @@
                               Write unit tests for API
                             </div>
                           </div>
-                          <div class="wireframe-form-row">
+                          <div
+                            class="wireframe-form-row wireframe-form-row-top"
+                          >
                             <div class="wireframe-label">Description</div>
-                            <div class="wireframe-item">
+                            <div
+                              class="wireframe-item wireframe-item-multiline"
+                            >
                               Cover items CRUD endpoints
                             </div>
                           </div>
