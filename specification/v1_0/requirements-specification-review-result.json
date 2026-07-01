@@ -1,0 +1,65 @@
+{
+  "reviewer": "mbradic",
+  "reviewDate": "2026-07-01",
+  "requirements": {
+    "FR-001": {
+      "status": "pending",
+      "testCases": {
+        "TC-001-001: View backlog list with existing items": {
+          "status": "fail",
+          "steps": []
+        },
+        "TC-001-002: View backlog list when empty": {
+          "status": "pending",
+          "steps": []
+        }
+      }
+    },
+    "FR-002": {
+      "status": "pending",
+      "testCases": {
+        "TC-002-001: View item details with full description": {
+          "status": "pending",
+          "steps": []
+        }
+      }
+    },
+    "FR-003": {
+      "status": "pending",
+      "testCases": {
+        "TC-003-001: Add a new item successfully": {
+          "status": "pending",
+          "steps": []
+        },
+        "TC-003-002: Add item without a required title": {
+          "status": "pending",
+          "steps": []
+        }
+      }
+    },
+    "FR-004": {
+      "status": "pending",
+      "testCases": {
+        "TC-004-001: Edit an existing item": {
+          "status": "pending",
+          "steps": []
+        }
+      }
+    },
+    "FR-005": {
+      "status": "pending",
+      "testCases": {
+        "TC-005-001: Delete an item with confirmation": {
+          "status": "pending",
+          "steps": []
+        },
+        "TC-005-002: Cancel a delete action": {
+          "status": "pending",
+          "steps": []
+        }
+      }
+    }
+  },
+  "recommendation": "",
+  "generalComments": ""
+}
