@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requirements Specification</title>
+    <title>Requirements Specification - mb-backlog</title>
     <style>
         * {
             margin: 0;
@@ -385,6 +385,29 @@
             text-transform: uppercase;
         }
         
+        .wireframe-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 4px;
+            font-size: 0.95em;
+        }
+        
+        .wireframe-table th,
+        .wireframe-table td {
+            padding: 6px 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .wireframe-table thead {
+            background-color: #1a1a1a;
+            color: white;
+        }
+        
+        .wireframe-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
         .page-break {
             page-break-after: always;
             margin: 40px 0;
@@ -414,7 +437,7 @@
             <div class="meta-info">
                 <div class="meta-item">
                     <span class="meta-label">Project:</span>
-                    <span class="meta-value">[Project Name]</span>
+                    <span class="meta-value">mb-backlog — Personal Task Backlog</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Version:</span>
@@ -422,7 +445,7 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Date:</span>
-                    <span class="meta-value">[Date]</span>
+                    <span class="meta-value">2026-07-01</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Status:</span>
@@ -430,11 +453,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Author:</span>
-                    <span class="meta-value">[Author Name]</span>
+                    <span class="meta-value">mbradic</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Stakeholders:</span>
-                    <span class="meta-value">[Names]</span>
+                    <span class="meta-value">mbradic (Owner / Developer / User)</span>
                 </div>
             </div>
         </header>
@@ -458,14 +481,18 @@
         <!-- Executive Summary -->
         <h2 id="executive-summary">1. Executive Summary</h2>
         <p>
-            [Provide a brief overview of the project, its objectives, and the scope of this requirements document. 
-            This section should be understandable to all stakeholders, including non-technical personnel.]
+            mb-backlog is a personal web application for managing a single user's task backlog. It allows the
+            user to capture, track, and complete tasks through a simple browser-based interface
+            backed by a local Node.js server and a SQLite database. The application is intentionally minimal:
+            it is built with vanilla JavaScript and Node.js core modules only, with no external frameworks or
+            npm dependencies, and is intended to run on the owner's own machine.
         </p>
         <p><strong>Key Objectives:</strong></p>
         <ul>
-            <li>[Objective 1]</li>
-            <li>[Objective 2]</li>
-            <li>[Objective 3]</li>
+            <li>Provide a fast, no-friction way to capture and manage personal tasks in a single backlog</li>
+            <li>Allow the backlog to be manually reordered so the most important work is always visible at the top</li>
+            <li>Track the status of each task (Backlog, In Progress, Done) throughout its lifecycle</li>
+            <li>Keep the technology footprint minimal (pure JS/Node.js, SQLite, no external libraries)</li>
         </ul>
 
         <!-- Project Overview -->
@@ -473,28 +500,35 @@
         
         <h3>2.1 Background</h3>
         <p>
-            [Provide context and background information about why this project is needed. 
-            Describe the current situation and problems that need to be addressed.]
+            The owner currently lacks a single, lightweight place to keep track of personal tasks and their
+            relative order of importance. Existing note-taking tools and to-do apps either require external accounts,
+            pull in heavy frameworks/dependencies, or don't fit the exact workflow of maintaining an ordered
+            backlog. mb-backlog addresses this by providing a small, self-hosted, dependency-free application
+            focused purely on managing a personal task backlog.
         </p>
         
         <h3>2.2 Scope</h3>
         <p><strong>In Scope:</strong></p>
         <ul>
-            <li>[Feature/Functionality 1]</li>
-            <li>[Feature/Functionality 2]</li>
-            <li>[Feature/Functionality 3]</li>
+            <li>Web-based UI for creating, viewing, editing, and deleting backlog items</li>
+            <li>Status tracking for each item (Backlog, In Progress, Done)</li>
+            <li>Manual reordering of items within the backlog</li>
+            <li>Filtering the backlog list by status</li>
+            <li>Persistent local storage of all data in a SQLite database file</li>
+            <li>A minimal JSON API served by a Node.js HTTP server</li>
         </ul>
         <p><strong>Out of Scope:</strong></p>
         <ul>
-            <li>[What is explicitly excluded]</li>
-            <li>[Future enhancements]</li>
+            <li>Multi-user support, accounts, or authentication</li>
+            <li>Cloud hosting, remote access, or multi-device synchronization</li>
+            <li>Native mobile applications</li>
+            <li>Reminders, notifications, or calendar integration</li>
+            <li>Third-party integrations of any kind</li>
         </ul>
         
         <h3>2.3 Target Users</h3>
         <ul>
-            <li><strong>User Role 1:</strong> [Description]</li>
-            <li><strong>User Role 2:</strong> [Description]</li>
-            <li><strong>User Role 3:</strong> [Description]</li>
+            <li><strong>Owner (single user):</strong> The sole user of the application, who creates, organizes, and completes their own personal tasks.</li>
         </ul>
 
         <!-- Functional Requirements -->
@@ -507,115 +541,86 @@
         <h3>3.1 Core Features</h3>
         
         <div class="requirement">
-            <span class="requirement-id">FR-001: [Feature Title]</span>
+            <span class="requirement-id">FR-001: Add Backlog Item</span>
             <div class="requirement-description">
-                <p><strong>Description:</strong> [Clear description of what the system should do]</p>
-                <p><strong>Related User Role:</strong> [User Role]</p>
+                <p><strong>Description:</strong> The user can add a new item to the backlog by providing a title and an optional description. New items default to "Backlog" status and are added to the bottom of the backlog.</p>
+                <p><strong>Related User Role:</strong> Owner (single user)</p>
             </div>
             <div class="test-scenarios">
                 <h4>Manual Testing Scenarios</h4>
                 <div class="test-case">
-                    <span class="test-case-id">TC-001-001: [Test Case Title]</span>
+                    <span class="test-case-id">TC-001-001: Add a new backlog item with all fields</span>
                     <div class="test-section">
                         <span class="test-section-title">Precondition:</span>
-                        <p style="margin: 5px 0 0 0;">[Describe the initial state or setup required]</p>
+                        <p style="margin: 5px 0 0 0;">The application is open in the browser and the backlog list is visible (may be empty or contain items).</p>
                     </div>
                     <div class="test-section">
                         <span class="test-section-title">Test Steps:</span>
                         <div class="test-steps">
                             <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
+                                <div class="test-step-text"><strong>Step 1:</strong> Click the "Add Item" button to open the new item form.</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
+                                        <div class="wireframe-logo">mb-backlog</div>
                                         <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
                                         </div>
                                     </div>
                                     <div class="wireframe-main">
                                         <div class="wireframe-content">
                                             <div class="wireframe-section">
                                                 <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
+                                                    <div class="wireframe-section-title">Backlog</div>
                                                     <div class="wireframe-section-action">[Action]</div>
                                                 </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
+                                                <table class="wireframe-table">
+                                                    <thead>
+                                                        <tr><th>Title</th><th>Status</th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>Fix bike brakes</td><td>Backlog</td></tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                             <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
+                                                <div class="wireframe-button">+ Add Item</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
+                                        mb-backlog | local instance
                                     </div>
                                 </div>
                             </div>
                             <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
+                                <div class="test-step-text"><strong>Step 2:</strong> Fill in Title = "Renew passport", Description = "Apply before trip in September", and click "Save".</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
+                                        <div class="wireframe-logo">mb-backlog</div>
                                         <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
                                         </div>
                                     </div>
                                     <div class="wireframe-main">
                                         <div class="wireframe-content">
                                             <div class="wireframe-section">
                                                 <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
+                                                    <div class="wireframe-section-title">New Backlog Item</div>
                                                     <div class="wireframe-section-action">[Action]</div>
                                                 </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
+                                                <div class="wireframe-item">Title: [Renew passport]</div>
+                                                <div class="wireframe-item">Description: [Apply before trip in September]</div>
                                             </div>
                                             <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
+                                                <div class="wireframe-button">Save</div>
+                                                <div class="wireframe-button-secondary">Cancel</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 3:</strong> [Step 3]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
+                                        mb-backlog | local instance
                                     </div>
                                 </div>
                             </div>
@@ -623,79 +628,46 @@
                     </div>
                     <div class="test-section">
                         <span class="test-section-title">Expected Result:</span>
-                        <p style="margin: 5px 0 0 0;">[What the user should observe]</p>
+                        <p style="margin: 5px 0 0 0;">The form closes and the new item "Renew passport" appears in the backlog list with status "Backlog". The item is persisted (it remains after a page refresh).</p>
                     </div>
                 </div>
                 <div class="test-case">
-                    <span class="test-case-id">TC-001-002: [Alternative Scenario]</span>
+                    <span class="test-case-id">TC-001-002: Attempt to add an item without a title</span>
                     <div class="test-section">
                         <span class="test-section-title">Precondition:</span>
-                        <p style="margin: 5px 0 0 0;">[Describe the initial state or setup required]</p>
+                        <p style="margin: 5px 0 0 0;">The "Add Item" form is open.</p>
                     </div>
                     <div class="test-section">
                         <span class="test-section-title">Test Steps:</span>
                         <div class="test-steps">
                             <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
+                                <div class="test-step-text"><strong>Step 1:</strong> Leave the Title field empty and click "Save".</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
+                                        <div class="wireframe-logo">mb-backlog</div>
                                         <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
                                         </div>
                                     </div>
                                     <div class="wireframe-main">
                                         <div class="wireframe-content">
                                             <div class="wireframe-section">
                                                 <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
+                                                    <div class="wireframe-section-title">New Backlog Item</div>
                                                     <div class="wireframe-section-action">[Action]</div>
                                                 </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
+                                                <div class="wireframe-item">Title: [ ] — "Title is required"</div>
+                                                <div class="wireframe-item">Description: [ ]</div>
                                             </div>
                                             <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
+                                                <div class="wireframe-button">Save</div>
+                                                <div class="wireframe-button-secondary">Cancel</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
+                                        mb-backlog | local instance
                                     </div>
                                 </div>
                             </div>
@@ -703,122 +675,89 @@
                     </div>
                     <div class="test-section">
                         <span class="test-section-title">Expected Result:</span>
-                        <p style="margin: 5px 0 0 0;">[What the user should observe]</p>
+                        <p style="margin: 5px 0 0 0;">The form does not submit; a validation message "Title is required" is shown next to the Title field, and no item is created.</p>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="requirement">
-            <span class="requirement-id">FR-002: [Feature Title]</span>
+            <span class="requirement-id">FR-002: Edit Backlog Item</span>
             <div class="requirement-description">
-                <p><strong>Description:</strong> [Clear description of what the system should do]</p>
-                <p><strong>Related User Role:</strong> [User Role]</p>
+                <p><strong>Description:</strong> The user can edit the title and description of an existing backlog item at any time.</p>
+                <p><strong>Related User Role:</strong> Owner (single user)</p>
             </div>
             <div class="test-scenarios">
                 <h4>Manual Testing Scenarios</h4>
                 <div class="test-case">
-                    <span class="test-case-id">TC-002-001: [Test Case Title]</span>
+                    <span class="test-case-id">TC-002-001: Edit an existing item's title and description</span>
                     <div class="test-section">
                         <span class="test-section-title">Precondition:</span>
-                        <p style="margin: 5px 0 0 0;">[Describe the initial state or setup required]</p>
+                        <p style="margin: 5px 0 0 0;">At least one backlog item exists, e.g. "Fix bike brakes".</p>
                     </div>
                     <div class="test-section">
                         <span class="test-section-title">Test Steps:</span>
                         <div class="test-steps">
                             <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
+                                <div class="test-step-text"><strong>Step 1:</strong> Click the "Edit" action on the "Fix bike brakes" item.</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
+                                        <div class="wireframe-logo">mb-backlog</div>
                                         <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
                                         </div>
                                     </div>
                                     <div class="wireframe-main">
                                         <div class="wireframe-content">
                                             <div class="wireframe-section">
                                                 <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
+                                                    <div class="wireframe-section-title">Backlog</div>
                                                     <div class="wireframe-section-action">[Action]</div>
                                                 </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
+                                                <table class="wireframe-table">
+                                                    <thead>
+                                                        <tr><th>Title</th><th>Actions</th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>Fix bike brakes</td><td>[Edit] [Delete]</td></tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
+                                        mb-backlog | local instance
                                     </div>
                                 </div>
                             </div>
                             <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
+                                <div class="test-step-text"><strong>Step 2:</strong> Change the title to "Fix bike brakes and tires" and click "Save".</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
+                                        <div class="wireframe-logo">mb-backlog</div>
                                         <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
                                         </div>
                                     </div>
                                     <div class="wireframe-main">
                                         <div class="wireframe-content">
                                             <div class="wireframe-section">
                                                 <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
+                                                    <div class="wireframe-section-title">Edit Backlog Item</div>
                                                     <div class="wireframe-section-action">[Action]</div>
                                                 </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
+                                                <div class="wireframe-item">Title: [Fix bike brakes and tires]</div>
                                             </div>
                                             <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
+                                                <div class="wireframe-button">Save</div>
+                                                <div class="wireframe-button-secondary">Cancel</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 3:</strong> [Step 3]</div>
-                                <div class="wireframe-container">
-                                    <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
-                                        <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-main">
-                                        <div class="wireframe-content">
-                                            <div class="wireframe-section">
-                                                <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
-                                                    <div class="wireframe-section-action">[Action]</div>
-                                                </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
+                                        mb-backlog | local instance
                                     </div>
                                 </div>
                             </div>
@@ -826,90 +765,89 @@
                     </div>
                     <div class="test-section">
                         <span class="test-section-title">Expected Result:</span>
-                        <p style="margin: 5px 0 0 0;">[What the user should observe]</p>
+                        <p style="margin: 5px 0 0 0;">The item is updated in place in the list with the new title "Fix bike brakes and tires", and the change persists across a page refresh.</p>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="requirement">
-            <span class="requirement-id">FR-003: [Feature Title]</span>
+            <span class="requirement-id">FR-003: Delete Backlog Item</span>
             <div class="requirement-description">
-                <p><strong>Description:</strong> [Clear description of what the system should do]</p>
-                <p><strong>Related User Role:</strong> [User Role]</p>
+                <p><strong>Description:</strong> The user can permanently delete a backlog item, after confirming the action, so it no longer appears anywhere in the application.</p>
+                <p><strong>Related User Role:</strong> Owner (single user)</p>
             </div>
             <div class="test-scenarios">
                 <h4>Manual Testing Scenarios</h4>
                 <div class="test-case">
-                    <span class="test-case-id">TC-003-001: [Test Case Title]</span>
+                    <span class="test-case-id">TC-003-001: Delete an item with confirmation</span>
                     <div class="test-section">
                         <span class="test-section-title">Precondition:</span>
-                        <p style="margin: 5px 0 0 0;">[Describe the initial state or setup required]</p>
+                        <p style="margin: 5px 0 0 0;">The item "Renew passport" exists in the backlog list.</p>
                     </div>
                     <div class="test-section">
                         <span class="test-section-title">Test Steps:</span>
                         <div class="test-steps">
                             <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
+                                <div class="test-step-text"><strong>Step 1:</strong> Click "Delete" on the "Renew passport" item; a confirmation dialog appears.</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
+                                        <div class="wireframe-logo">mb-backlog</div>
                                         <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
                                         </div>
                                     </div>
                                     <div class="wireframe-main">
                                         <div class="wireframe-content">
                                             <div class="wireframe-section">
                                                 <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
+                                                    <div class="wireframe-section-title">Delete Item?</div>
                                                     <div class="wireframe-section-action">[Action]</div>
                                                 </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
+                                                <div class="wireframe-item">Are you sure you want to delete "Renew passport"? This cannot be undone.</div>
                                             </div>
                                             <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
+                                                <div class="wireframe-button">Delete</div>
+                                                <div class="wireframe-button-secondary">Cancel</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
+                                        mb-backlog | local instance
                                     </div>
                                 </div>
                             </div>
                             <div class="test-step-block">
-                                <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
+                                <div class="test-step-text"><strong>Step 2:</strong> Click "Delete" to confirm.</div>
                                 <div class="wireframe-container">
                                     <div class="wireframe-header">
-                                        <div class="wireframe-logo">[App Logo/Name]</div>
+                                        <div class="wireframe-logo">mb-backlog</div>
                                         <div class="wireframe-nav">
-                                            <div>[Nav Item 1]</div>
-                                            <div>[Nav Item 2]</div>
-                                            <div>[Nav Item 3]</div>
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
                                         </div>
                                     </div>
                                     <div class="wireframe-main">
                                         <div class="wireframe-content">
                                             <div class="wireframe-section">
                                                 <div class="wireframe-section-header">
-                                                    <div class="wireframe-section-title">[Page Section Title]</div>
+                                                    <div class="wireframe-section-title">Backlog</div>
                                                     <div class="wireframe-section-action">[Action]</div>
                                                 </div>
-                                                <div class="wireframe-item">[Content Area 1]</div>
-                                                <div class="wireframe-item">[Content Area 2]</div>
-                                            </div>
-                                            <div style="text-align: center; margin-top: 20px;">
-                                                <div class="wireframe-button">[Action Button]</div>
-                                                <div class="wireframe-button-secondary">[Secondary Button]</div>
+                                                <table class="wireframe-table">
+                                                    <thead>
+                                                        <tr><th>Title</th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>Fix bike brakes and tires</td></tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="wireframe-footer">
-                                        © [Year] [Company Name] | [Footer Links]
+                                        mb-backlog | local instance
                                     </div>
                                 </div>
                             </div>
@@ -917,7 +855,190 @@
                     </div>
                     <div class="test-section">
                         <span class="test-section-title">Expected Result:</span>
-                        <p style="margin: 5px 0 0 0;">[What the user should observe]</p>
+                        <p style="margin: 5px 0 0 0;">The "Renew passport" item is permanently removed from the backlog and no longer appears in the list after refreshing the page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="requirement">
+            <span class="requirement-id">FR-004: View & Filter Backlog List</span>
+            <div class="requirement-description">
+                <p><strong>Description:</strong> The user can view all backlog items in a single list, and filter the list by status (Backlog, In Progress, Done).</p>
+                <p><strong>Related User Role:</strong> Owner (single user)</p>
+            </div>
+            <div class="test-scenarios">
+                <h4>Manual Testing Scenarios</h4>
+                <div class="test-case">
+                    <span class="test-case-id">TC-004-001: Filter the list to show only In Progress items</span>
+                    <div class="test-section">
+                        <span class="test-section-title">Precondition:</span>
+                        <p style="margin: 5px 0 0 0;">The backlog contains items with different statuses (Backlog, In Progress, Done).</p>
+                    </div>
+                    <div class="test-section">
+                        <span class="test-section-title">Test Steps:</span>
+                        <div class="test-steps">
+                            <div class="test-step-block">
+                                <div class="test-step-text"><strong>Step 1:</strong> Select "In Progress" from the status filter dropdown.</div>
+                                <div class="wireframe-container">
+                                    <div class="wireframe-header">
+                                        <div class="wireframe-logo">mb-backlog</div>
+                                        <div class="wireframe-nav">
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
+                                        </div>
+                                    </div>
+                                    <div class="wireframe-main">
+                                        <div class="wireframe-content">
+                                            <div class="wireframe-section">
+                                                <div class="wireframe-section-header">
+                                                    <div class="wireframe-section-title">Filters: Status [In Progress v]</div>
+                                                    <div class="wireframe-section-action">[Action]</div>
+                                                </div>
+                                                <table class="wireframe-table">
+                                                    <thead>
+                                                        <tr><th>Title</th><th>Status</th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>Fix bike brakes and tires</td><td>In Progress</td></tr>
+                                                        <tr><td>Renew passport</td><td>In Progress</td></tr>
+                                                        <tr style="opacity: 0.4;"><td>Water the plants</td><td>Backlog (hidden by filter)</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wireframe-footer">
+                                        mb-backlog | local instance
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-section">
+                        <span class="test-section-title">Expected Result:</span>
+                        <p style="margin: 5px 0 0 0;">Only items with status "In Progress" are displayed in the list; items with other statuses are hidden until the filter is cleared.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="requirement">
+            <span class="requirement-id">FR-005: Change Item Status</span>
+            <div class="requirement-description">
+                <p><strong>Description:</strong> The user can change the status of a backlog item between "Backlog", "In Progress", and "Done" directly from the list view.</p>
+                <p><strong>Related User Role:</strong> Owner (single user)</p>
+            </div>
+            <div class="test-scenarios">
+                <h4>Manual Testing Scenarios</h4>
+                <div class="test-case">
+                    <span class="test-case-id">TC-005-001: Mark an item as Done</span>
+                    <div class="test-section">
+                        <span class="test-section-title">Precondition:</span>
+                        <p style="margin: 5px 0 0 0;">The item "Fix bike brakes and tires" has status "In Progress".</p>
+                    </div>
+                    <div class="test-section">
+                        <span class="test-section-title">Test Steps:</span>
+                        <div class="test-steps">
+                            <div class="test-step-block">
+                                <div class="test-step-text"><strong>Step 1:</strong> Change the status dropdown on the item from "In Progress" to "Done".</div>
+                                <div class="wireframe-container">
+                                    <div class="wireframe-header">
+                                        <div class="wireframe-logo">mb-backlog</div>
+                                        <div class="wireframe-nav">
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
+                                        </div>
+                                    </div>
+                                    <div class="wireframe-main">
+                                        <div class="wireframe-content">
+                                            <div class="wireframe-section">
+                                                <div class="wireframe-section-header">
+                                                    <div class="wireframe-section-title">Backlog</div>
+                                                    <div class="wireframe-section-action">[Action]</div>
+                                                </div>
+                                                <table class="wireframe-table">
+                                                    <thead>
+                                                        <tr><th>Title</th><th>Status</th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>Fix bike brakes and tires</td><td>[Done v]</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wireframe-footer">
+                                        mb-backlog | local instance
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-section">
+                        <span class="test-section-title">Expected Result:</span>
+                        <p style="margin: 5px 0 0 0;">The item moves out of the active "Backlog" view and appears under "Completed"; its status persists as "Done" after a page refresh.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="requirement">
+            <span class="requirement-id">FR-006: Reorder Backlog Items</span>
+            <div class="requirement-description">
+                <p><strong>Description:</strong> The user can manually reorder items within the backlog (e.g., via drag-and-drop or up/down controls) to reflect the order in which they want to work on them.</p>
+                <p><strong>Related User Role:</strong> Owner (single user)</p>
+            </div>
+            <div class="test-scenarios">
+                <h4>Manual Testing Scenarios</h4>
+                <div class="test-case">
+                    <span class="test-case-id">TC-006-001: Move an item up in the backlog order</span>
+                    <div class="test-section">
+                        <span class="test-section-title">Precondition:</span>
+                        <p style="margin: 5px 0 0 0;">The backlog list shows "Water the plants" below "Fix bike brakes and tires".</p>
+                    </div>
+                    <div class="test-section">
+                        <span class="test-section-title">Test Steps:</span>
+                        <div class="test-steps">
+                            <div class="test-step-block">
+                                <div class="test-step-text"><strong>Step 1:</strong> Click the "Move Up" control on "Water the plants" to move it above "Fix bike brakes and tires".</div>
+                                <div class="wireframe-container">
+                                    <div class="wireframe-header">
+                                        <div class="wireframe-logo">mb-backlog</div>
+                                        <div class="wireframe-nav">
+                                            <div>Backlog</div>
+                                            <div>Completed</div>
+                                        </div>
+                                    </div>
+                                    <div class="wireframe-main">
+                                        <div class="wireframe-content">
+                                            <div class="wireframe-section">
+                                                <div class="wireframe-section-header">
+                                                    <div class="wireframe-section-title">Backlog (ordered)</div>
+                                                    <div class="wireframe-section-action">[Action]</div>
+                                                </div>
+                                                <table class="wireframe-table">
+                                                    <thead>
+                                                        <tr><th>#</th><th>Title</th><th>Move</th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>1</td><td>Water the plants</td><td>[^]</td></tr>
+                                                        <tr><td>2</td><td>Fix bike brakes and tires</td><td>[v]</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wireframe-footer">
+                                        mb-backlog | local instance
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-section">
+                        <span class="test-section-title">Expected Result:</span>
+                        <p style="margin: 5px 0 0 0;">"Water the plants" is now listed above "Fix bike brakes and tires", and the new order persists across a page refresh.</p>
                     </div>
                 </div>
             </div>
@@ -928,44 +1049,46 @@
         
         <h3>4.1 Performance</h3>
         <ul>
-            <li>Response time for [operation]: [time] milliseconds</li>
-            <li>System throughput: [number] transactions per second</li>
-            <li>Data load time: [time]</li>
+            <li>Backlog list load time: under 200 milliseconds for up to 1,000 items on the local machine</li>
+            <li>Add/edit/delete/reorder operations: perceived as instantaneous (under 100 milliseconds) since all processing is local</li>
+            <li>Single concurrent request at a time is sufficient; no concurrency tuning required</li>
         </ul>
         
         <h3>4.2 Scalability</h3>
         <p>
-            [Describe how the system should handle increased load. Include expected user capacity, 
-            data volume growth, and expected peak usage patterns.]
+            As a single-user, locally run application, mb-backlog does not need to scale to multiple users or
+            servers. It should comfortably handle a personal backlog of up to a few thousand items without
+            noticeable performance degradation, using simple SQLite indexing on status.
         </p>
         
         <h3>4.3 Security</h3>
         <ul>
-            <li>Authentication: [Method - e.g., OAuth 2.0, LDAP]</li>
-            <li>Authorization: [Role-based access control (RBAC), Attribute-based, etc.]</li>
-            <li>Data Encryption: [In transit and at rest requirements]</li>
-            <li>Compliance: [GDPR, HIPAA, PCI-DSS, etc.]</li>
+            <li>Authentication: none required; the application is intended for local, single-user use only and must not be exposed to the public internet</li>
+            <li>Authorization: not applicable (single user, no roles)</li>
+            <li>Data Handling: all SQL queries must use parameterized statements to prevent SQL injection; all user input rendered in the UI must be safely escaped to prevent cross-site scripting (XSS)</li>
+            <li>Data Encryption: not required for v1, since data resides only in a local SQLite file on the owner's machine; the server should bind to localhost only</li>
+            <li>Compliance: none applicable (personal, non-commercial, single-user data)</li>
         </ul>
         
         <h3>4.4 Reliability & Availability</h3>
         <ul>
-            <li>Uptime SLA: [percentage]</li>
-            <li>Mean Time To Recovery (MTTR): [time]</li>
-            <li>Backup Strategy: [description]</li>
+            <li>Uptime SLA: not applicable; the server runs on demand when the owner starts it</li>
+            <li>Mean Time To Recovery (MTTR): restarting the Node.js process should restore full functionality within seconds</li>
+            <li>Backup Strategy: the owner is responsible for periodically copying the SQLite database file to back it up; no automated backup is required for v1</li>
         </ul>
         
         <h3>4.5 Usability</h3>
         <ul>
-            <li>Browser compatibility: [List of supported browsers]</li>
-            <li>Accessibility: [WCAG 2.1 Level AA compliance]</li>
-            <li>Response to user interactions: [time] seconds</li>
+            <li>Browser compatibility: latest two versions of Chrome, Edge, and Firefox</li>
+            <li>Accessibility: basic keyboard navigability for forms and buttons; no formal WCAG certification required for v1</li>
+            <li>Response to user interactions: under 100 milliseconds for UI feedback (e.g., button clicks, status changes)</li>
         </ul>
         
         <h3>4.6 Maintainability</h3>
         <ul>
-            <li>Code documentation: [Required standards]</li>
-            <li>Testing coverage: [Target percentage]</li>
-            <li>Technology stack: [Listed technologies]</li>
+            <li>Code documentation: key modules and API endpoints should have brief comments describing their purpose</li>
+            <li>Testing: manual test scenarios as documented in Section 3; no formal automated coverage target for v1</li>
+            <li>Technology stack: intentionally minimal (vanilla JavaScript, Node.js core modules, SQLite) to keep the codebase easy to understand and maintain without dependency upgrades</li>
         </ul>
 
         <!-- Technical Specifications -->
@@ -973,7 +1096,13 @@
         
         <h3>6.1 Architecture</h3>
         <p>
-            [Describe the high-level system architecture. Include diagrams or references if available.]
+            mb-backlog uses a simple client-server architecture running entirely on the owner's local machine.
+            A Node.js process, built using only Node's built-in <code>http</code> module (no web frameworks),
+            serves static frontend assets (HTML, CSS, vanilla JavaScript) and exposes a small JSON API under
+            <code>/api</code>. The API reads and writes to a single SQLite database file using Node's built-in
+            <code>node:sqlite</code> module, with no external npm packages. The browser-based frontend uses
+            vanilla JavaScript to call the API and render the backlog list, with no frontend frameworks or
+            build tooling.
         </p>
         
         <h3>6.2 Technology Stack</h3>
@@ -989,38 +1118,48 @@
             <tbody>
                 <tr>
                     <td>Frontend</td>
-                    <td>[Technology]</td>
-                    <td>[Version]</td>
-                    <td>[Reason for selection]</td>
+                    <td>Vanilla JavaScript, HTML5, CSS3</td>
+                    <td>N/A (no framework)</td>
+                    <td>Meets the requirement for a pure JS solution with no external libraries and minimal footprint</td>
                 </tr>
                 <tr>
                     <td>Backend</td>
-                    <td>[Technology]</td>
-                    <td>[Version]</td>
-                    <td>[Reason for selection]</td>
+                    <td>Node.js (built-in <code>http</code> module only)</td>
+                    <td>Node.js 22 LTS or later</td>
+                    <td>Pure Node.js with no external frameworks, as required; Node 22+ provides the built-in <code>node:sqlite</code> module</td>
                 </tr>
                 <tr>
                     <td>Database</td>
-                    <td>[Technology]</td>
-                    <td>[Version]</td>
-                    <td>[Reason for selection]</td>
+                    <td>SQLite (single-file database)</td>
+                    <td>SQLite 3, accessed via <code>node:sqlite</code></td>
+                    <td>Lightweight, file-based, zero-configuration storage suitable for a single-user local app</td>
                 </tr>
             </tbody>
         </table>
         
         <h3>6.3 Database Schema (Summary)</h3>
-        <p>[Describe main entities and their relationships. Include detailed schema diagrams separately if needed.]</p>
+        <p>
+            A single table, <code>backlog_items</code>, stores all data: <code>id</code> (primary key),
+            <code>title</code>, <code>description</code>, <code>status</code> (Backlog / In Progress / Done),
+            <code>sort_order</code> (integer, for manual reordering), <code>created_at</code>, and
+            <code>updated_at</code>. No other tables are required for v1, since the application is single-user
+            and has no relational entities beyond backlog items.
+        </p>
         
         <h3>6.4 API Specifications</h3>
-        <p>
-            [Describe key API endpoints, request/response formats, and authentication methods. 
-            Reference OpenAPI/Swagger documentation if available.]
-        </p>
+        <p>The backend exposes the following minimal JSON endpoints under <code>/api</code>:</p>
+        <ul>
+            <li><code>GET /api/items</code> — list all backlog items; supports an optional <code>status</code> query parameter for filtering, ordered by <code>sort_order</code></li>
+            <li><code>POST /api/items</code> — create a new backlog item (title required; description optional)</li>
+            <li><code>GET /api/items/:id</code> — retrieve a single backlog item</li>
+            <li><code>PUT /api/items/:id</code> — update an existing item's title, description, or status</li>
+            <li><code>DELETE /api/items/:id</code> — permanently delete an item</li>
+            <li><code>PUT /api/items/reorder</code> — update the <code>sort_order</code> of one or more items after a drag/reorder action</li>
+        </ul>
         
         <h3>6.5 Integration Points</h3>
         <ul>
-            <li>[External system 1]: [Integration method and description]</li>
-            <li>[External system 2]: [Integration method and description]</li>
+            <li>None. mb-backlog is a fully standalone application with no external system integrations in v1.</li>
         </ul>
 
         <!-- Constraints & Assumptions -->
@@ -1028,18 +1167,19 @@
         
         <h3>7.1 Constraints</h3>
         <ul>
-            <li><strong>Budget:</strong> [Budget constraints if any]</li>
-            <li><strong>Timeline:</strong> [Deadline or timeline constraints]</li>
-            <li><strong>Resource:</strong> [Team size, skills, available resources]</li>
-            <li><strong>Technical:</strong> [Technical limitations or restrictions]</li>
-            <li><strong>Regulatory:</strong> [Legal, compliance, or regulatory constraints]</li>
+            <li><strong>Budget:</strong> None; this is a personal, non-commercial project</li>
+            <li><strong>Timeline:</strong> No fixed deadline</li>
+            <li><strong>Resource:</strong> Single developer (the owner), working part-time</li>
+            <li><strong>Technical:</strong> Must be implemented using pure JavaScript and Node.js core modules only, with no external frameworks or npm libraries; must use SQLite for persistence</li>
+            <li><strong>Regulatory:</strong> None applicable; all data is personal and stored locally</li>
         </ul>
         
         <h3>7.2 Assumptions</h3>
         <ul>
-            <li>[Assumption 1 - What we're assuming to be true]</li>
-            <li>[Assumption 2 - What we're assuming to be true]</li>
-            <li>[Assumption 3 - What we're assuming to be true]</li>
+            <li>The application runs locally on the owner's own machine and is not exposed to the public internet</li>
+            <li>The owner has Node.js 22 LTS or later installed, providing built-in <code>node:sqlite</code> support</li>
+            <li>Only a single browser session accesses the application at any given time</li>
+            <li>Multi-device synchronization is not required for v1</li>
         </ul>
 
         <!-- Dependencies -->
@@ -1047,8 +1187,8 @@
         
         <h3>8.1 External Dependencies</h3>
         <ul>
-            <li>[Dependency 1]: [Impact if not available]</li>
-            <li>[Dependency 2]: [Impact if not available]</li>
+            <li>Node.js runtime (version 22 LTS or later): required to run the server and access the built-in <code>node:sqlite</code> module</li>
+            <li>SQLite (bundled via <code>node:sqlite</code>): required for all data persistence</li>
         </ul>
         
         <h3>8.2 Known Risks</h3>
@@ -1063,10 +1203,16 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>[Risk description]</td>
-                    <td>High/Medium/Low</td>
-                    <td>High/Medium/Low</td>
-                    <td>[How to mitigate]</td>
+                    <td>The built-in <code>node:sqlite</code> module's API changes between Node.js versions since it is relatively new</td>
+                    <td>Medium</td>
+                    <td>Medium</td>
+                    <td>Pin the project to a specific Node.js LTS version and document it clearly; re-test after any Node.js upgrade</td>
+                </tr>
+                <tr>
+                    <td>Data loss due to absence of an automated backup mechanism</td>
+                    <td>Low</td>
+                    <td>High</td>
+                    <td>Document a manual backup process (copying the SQLite file) and recommend the owner do so periodically</td>
                 </tr>
             </tbody>
         </table>
@@ -1085,8 +1231,8 @@
             <tbody>
                 <tr>
                     <td>1.0</td>
-                    <td>[Date]</td>
-                    <td>[Author]</td>
+                    <td>2026-07-01</td>
+                    <td>mbradic</td>
                     <td>Initial version</td>
                 </tr>
             </tbody>
@@ -1096,24 +1242,25 @@
         <div class="sign-off">
             <h2 id="approvals">9. Approvals & Sign-Off</h2>
             <p>
-                By signing below, the approvers confirm that they have reviewed this Requirements Specification 
-                and agree with its contents.
+                As a personal, single-owner project, formal multi-party sign-off is not required. The section
+                below is retained for consistency with the standard template and may be used if the project is
+                ever reviewed with others.
             </p>
             
             <div class="sign-off-row">
                 <div class="sign-off-item">
                     <div class="sign-off-signature"></div>
-                    <div class="sign-off-name">Product Manager</div>
+                    <div class="sign-off-name">Owner / Product Decision</div>
                     <div class="sign-off-role">Date: ___________</div>
                 </div>
                 <div class="sign-off-item">
                     <div class="sign-off-signature"></div>
-                    <div class="sign-off-name">Technical Lead</div>
+                    <div class="sign-off-name">Owner / Technical Decision</div>
                     <div class="sign-off-role">Date: ___________</div>
                 </div>
                 <div class="sign-off-item">
                     <div class="sign-off-signature"></div>
-                    <div class="sign-off-name">Project Manager</div>
+                    <div class="sign-off-name">Reviewer (optional)</div>
                     <div class="sign-off-role">Date: ___________</div>
                 </div>
             </div>
