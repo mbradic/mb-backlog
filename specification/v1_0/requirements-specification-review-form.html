@@ -1499,6 +1499,7 @@
         const reqId = section.dataset.requirement;
         reviewData.requirements[reqId] = {
           status: "pending",
+          notes: "",
           testCases: {}
         };
 
@@ -1517,6 +1518,15 @@
             }
           });
         });
+        
+        // Capture requirement notes
+        const reqNotesTextarea = section.querySelector(".requirement-notes textarea");
+        if (reqNotesTextarea) {
+          reviewData.requirements[reqId].notes = "";
+          reqNotesTextarea.addEventListener("change", function () {
+            reviewData.requirements[reqId].notes = this.value;
+          });
+        }
 
         // Handle test case status buttons
         const testCases = section.querySelectorAll(".test-case-section");
@@ -1538,15 +1548,36 @@
             });
           });
 
-          // Handle step checkboxes
+          // Handle step checkboxes and capture step details
           const steps = testCase.querySelectorAll(".test-step");
           steps.forEach((step, index) => {
+            const stepNumber = step.querySelector(".test-step-number")?.textContent || `Step ${index + 1}`;
+            const stepDescription = step.querySelector(".test-step-description")?.textContent || "";
             const checkbox = step.querySelector("input[type='checkbox']");
+            const issuesTextarea = step.querySelector(".step-issues-textarea");
+            
+            // Initialize step data
+            reviewData.requirements[reqId].testCases[testTitle].steps[index] = {
+              number: stepNumber,
+              description: stepDescription,
+              passed: false,
+              issues: ""
+            };
+            
+            // Update when checkbox changes
             if (checkbox) {
               checkbox.addEventListener("change", function () {
-                reviewData.requirements[reqId].testCases[testTitle].steps[index] =
+                reviewData.requirements[reqId].testCases[testTitle].steps[index].passed =
                   this.checked;
                 updateProgress();
+              });
+            }
+            
+            // Update when issues textarea changes
+            if (issuesTextarea) {
+              issuesTextarea.addEventListener("change", function () {
+                reviewData.requirements[reqId].testCases[testTitle].steps[index].issues =
+                  this.value;
               });
             }
           });
