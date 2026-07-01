@@ -71,7 +71,7 @@
       }
 
       h3 {
-        color: #333;
+        color: #0066cc;
         font-size: 1.3em;
         margin-top: 25px;
         margin-bottom: 10px;
@@ -632,11 +632,11 @@
             <a href="#functional-requirements">Functional Requirements</a>
             <ol>
               <li><a href="#fr-001">FR-001: View Backlog List</a></li>
-              <li><a href="#fr-002">FR-002: Add Backlog Item</a></li>
-              <li><a href="#fr-003">FR-003: Edit Backlog Item</a></li>
-              <li><a href="#fr-004">FR-004: Delete Backlog Item</a></li>
+              <li><a href="#fr-002">FR-002: View Backlog Item Detail</a></li>
+              <li><a href="#fr-003">FR-003: Add Backlog Item</a></li>
+              <li><a href="#fr-004">FR-004: Edit Backlog Item</a></li>
               <li>
-                <a href="#fr-005">FR-005: View Backlog Item Detail</a>
+                <a href="#fr-005">FR-005: Delete Backlog Item</a>
               </li>
             </ol>
           </li>
@@ -779,9 +779,9 @@
         <div class="test-scenarios">
           <h4>Manual Testing Scenarios</h4>
           <div class="test-case">
-            <span class="test-case-id"
-              >TC-001-001: View backlog list with existing items</span
-            >
+            <h4 class="test-case-id">
+              TC-001-001: View backlog list with existing items
+            </h4>
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
               <p style="margin: 5px 0 0 0">
@@ -1120,7 +1120,7 @@
         </div>
       </div>
 
-      <h3 id="fr-002" style="color: #0066cc">FR-002: Add Backlog Item</h3>
+      <h3 id="fr-003">FR-003: Add Backlog Item</h3>
 
       <div class="requirement">
         <div class="requirement-description">
@@ -1135,7 +1135,7 @@
           <h4>Manual Testing Scenarios</h4>
           <div class="test-case">
             <span class="test-case-id"
-              >TC-002-001: Add a new item successfully</span
+              >TC-003-001: Add a new item successfully</span
             >
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
@@ -1353,7 +1353,7 @@
           </div>
           <div class="test-case">
             <span class="test-case-id"
-              >TC-002-002: Add item without a required title</span
+              >TC-003-002: Add item without a required title</span
             >
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
@@ -1429,7 +1429,7 @@
         </div>
       </div>
 
-      <h3 id="fr-003">FR-003: Edit Backlog Item</h3>
+      <h3 id="fr-004">FR-004: Edit Backlog Item</h3>
 
       <div class="requirement">
         <div class="requirement-description">
@@ -1442,7 +1442,7 @@
         <div class="test-scenarios">
           <h4>Manual Testing Scenarios</h4>
           <div class="test-case">
-            <span class="test-case-id">TC-003-001: Edit an existing item</span>
+            <span class="test-case-id">TC-004-001: Edit an existing item</span>
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
               <p style="margin: 5px 0 0 0">
@@ -1618,7 +1618,7 @@
         </div>
       </div>
 
-      <h3 id="fr-004">FR-004: Delete Backlog Item</h3>
+      <h3 id="fr-005">FR-005: Delete Backlog Item</h3>
 
       <div class="requirement">
         <div class="requirement-description">
@@ -1633,7 +1633,7 @@
           <h4>Manual Testing Scenarios</h4>
           <div class="test-case">
             <span class="test-case-id"
-              >TC-004-001: Delete an item with confirmation</span
+              >TC-005-001: Delete an item with confirmation</span
             >
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
@@ -1883,7 +1883,7 @@
             </div>
           </div>
           <div class="test-case">
-            <span class="test-case-id">TC-004-002: Cancel a delete action</span>
+            <span class="test-case-id">TC-005-002: Cancel a delete action</span>
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
               <p style="margin: 5px 0 0 0">
@@ -1959,7 +1959,7 @@
         </div>
       </div>
 
-      <h3 id="fr-005">FR-005: View Backlog Item Detail</h3>
+      <h3 id="fr-002">FR-002: View Backlog Item Detail</h3>
 
       <div class="requirement">
         <div class="requirement-description">
@@ -1974,7 +1974,7 @@
           <h4>Manual Testing Scenarios</h4>
           <div class="test-case">
             <span class="test-case-id"
-              >TC-005-001: View item details with full description</span
+              >TC-002-001: View item details with full description</span
             >
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
@@ -2184,7 +2184,7 @@
           </div>
           <div class="test-case">
             <span class="test-case-id"
-              >TC-005-002: View item details with no description</span
+              >TC-002-002: View item details with no description</span
             >
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
@@ -2259,7 +2259,7 @@
           </div>
           <div class="test-case">
             <span class="test-case-id"
-              >TC-005-003: Close detail view and return to list</span
+              >TC-002-003: Close detail view and return to list</span
             >
             <div class="test-section">
               <span class="test-section-title">Precondition:</span>
