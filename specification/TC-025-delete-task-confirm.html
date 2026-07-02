@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      mb-backlog - TC-025 - Delete task after confirming deletion - 1.0
+    </title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="test-case">
+      <h4 class="test-case-id" id="TC-025">
+        TC-025: Delete task after confirming deletion
+      </h4>
+      <div class="test-section">
+        <span class="test-section-title">Precondition:</span>
+        <p style="margin: 5px 0 0 0">
+          Application is open with an existing task and delete functionality is available
+        </p>
+      </div>
+      <div class="test-section">
+        <span class="test-section-title">Test Steps:</span>
+        <div class="test-steps">
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 1:</strong> Select a task and click Delete button</div>
+            <div class="wireframe-link">
+              <a href="WF-011-delete-confirmation.html" target="_blank"
+                >View wireframe for delete confirmation dialog</a
+              >
+            </div>
+          </div>
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 2:</strong> Confirmation dialog appears, click "Confirm" button</div>
+            <div class="wireframe-link">
+              <a href="WF-011-delete-confirmation.html" target="_blank"
+                >View wireframe for delete confirmation dialog</a
+              >
+            </div>
+          </div>
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 3:</strong> Verify task is removed from the list</div>
+            <div class="wireframe-link">
+              <a href="WF-002-task-list.html" target="_blank"
+                >View wireframe for updated task list</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-section">
+        <span class="test-section-title">Expected Result:</span>
+        <p style="margin: 5px 0 0 0">
+          Task is permanently deleted and no longer appears in the task list.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

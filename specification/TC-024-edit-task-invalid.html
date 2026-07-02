@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      mb-backlog - TC-024 - Attempt to edit task with invalid data - 1.0
+    </title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="test-case">
+      <h4 class="test-case-id" id="TC-024">
+        TC-024: Attempt to edit task with invalid data
+      </h4>
+      <div class="test-section">
+        <span class="test-section-title">Precondition:</span>
+        <p style="margin: 5px 0 0 0">
+          Application is open with an existing task and edit functionality is available
+        </p>
+      </div>
+      <div class="test-section">
+        <span class="test-section-title">Test Steps:</span>
+        <div class="test-steps">
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 1:</strong> Open task edit form</div>
+            <div class="wireframe-link">
+              <a href="WF-010-edit-task-form.html" target="_blank"
+                >View wireframe for edit task form</a
+              >
+            </div>
+          </div>
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 2:</strong> Clear the title field (required field)</div>
+            <div class="wireframe-link">
+              <a href="WF-009-form-validation-error.html" target="_blank"
+                >View wireframe for validation error</a
+              >
+            </div>
+          </div>
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 3:</strong> Click Save button</div>
+            <div class="wireframe-link">
+              <a href="WF-009-form-validation-error.html" target="_blank"
+                >View wireframe for validation error</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-section">
+        <span class="test-section-title">Expected Result:</span>
+        <p style="margin: 5px 0 0 0">
+          Validation error is displayed indicating the required field is empty. Task is not updated.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

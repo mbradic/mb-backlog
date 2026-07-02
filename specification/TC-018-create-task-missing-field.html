@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      mb-backlog - TC-018 - Attempt to create task with missing required field - 1.0
+    </title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="test-case">
+      <h4 class="test-case-id" id="TC-018">
+        TC-018: Attempt to create task with missing required field
+      </h4>
+      <div class="test-section">
+        <span class="test-section-title">Precondition:</span>
+        <p style="margin: 5px 0 0 0">
+          Application is open with a create task form
+        </p>
+      </div>
+      <div class="test-section">
+        <span class="test-section-title">Test Steps:</span>
+        <div class="test-steps">
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 1:</strong> Click "Create Task" button to open the form</div>
+            <div class="wireframe-link">
+              <a href="WF-008-create-task-form.html" target="_blank"
+                >View wireframe for create task form</a
+              >
+            </div>
+          </div>
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 2:</strong> Enter code and title only, leave state empty</div>
+            <div class="wireframe-link">
+              <a href="WF-009-form-validation-error.html" target="_blank"
+                >View wireframe for form with validation error</a
+              >
+            </div>
+          </div>
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 3:</strong> Click Save button</div>
+            <div class="wireframe-link">
+              <a href="WF-009-form-validation-error.html" target="_blank"
+                >View wireframe for form with validation error</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-section">
+        <span class="test-section-title">Expected Result:</span>
+        <p style="margin: 5px 0 0 0">
+          Validation error is displayed indicating that the state field is required. Task is not created.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

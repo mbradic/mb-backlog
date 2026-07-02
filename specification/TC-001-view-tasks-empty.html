@@ -4,38 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      [Application name] - [Test Case Id] - [Test Case Title] - [Specification
-      Version]
+      mb-backlog - TC-001 - View tasks list when no tasks exist - 1.0
     </title>
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
     <div class="test-case">
-      <h4 class="test-case-id" id="[Test Case Id]">
-        [Test Case Id]: [Test Case Title]
+      <h4 class="test-case-id" id="TC-001">
+        TC-001: View tasks list when no tasks exist
       </h4>
       <div class="test-section">
         <span class="test-section-title">Precondition:</span>
         <p style="margin: 5px 0 0 0">
-          [Describe the initial state or setup required]
+          Application is open and all tasks have been deleted or this is a fresh installation with no tasks
         </p>
       </div>
       <div class="test-section">
         <span class="test-section-title">Test Steps:</span>
         <div class="test-steps">
           <div class="test-step-block">
-            <div class="test-step-text"><strong>Step 1:</strong> [Step 1]</div>
+            <div class="test-step-text"><strong>Step 1:</strong> Navigate to the tasks view</div>
             <div class="wireframe-link">
-              <a href="[Wireframe Filename Step 1].html" target="_blank"
-                >View wireframe for Step 1</a
+              <a href="WF-001-empty-task-list.html" target="_blank"
+                >View wireframe for empty task list</a
               >
             </div>
           </div>
           <div class="test-step-block">
-            <div class="test-step-text"><strong>Step 2:</strong> [Step 2]</div>
+            <div class="test-step-text"><strong>Step 2:</strong> Observe the display for any tasks</div>
             <div class="wireframe-link">
-              <a href="[Wireframe Filename Step 2].html" target="_blank"
-                >View wireframe for Step 2</a
+              <a href="WF-001-empty-task-list.html" target="_blank"
+                >View wireframe for empty task list</a
               >
             </div>
           </div>
@@ -43,7 +42,9 @@
       </div>
       <div class="test-section">
         <span class="test-section-title">Expected Result:</span>
-        <p style="margin: 5px 0 0 0">[What the user should observe]</p>
+        <p style="margin: 5px 0 0 0">
+          The task list displays with an empty state message indicating that no tasks exist. The interface remains functional with options to create a new task.
+        </p>
       </div>
     </div>
   </body>

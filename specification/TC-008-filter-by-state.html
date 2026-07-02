@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      mb-backlog - TC-008 - Filter tasks by state - 1.0
+    </title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="test-case">
+      <h4 class="test-case-id" id="TC-008">
+        TC-008: Filter tasks by state
+      </h4>
+      <div class="test-section">
+        <span class="test-section-title">Precondition:</span>
+        <p style="margin: 5px 0 0 0">
+          Application is open with multiple tasks in different states (To Do, In Progress, Done)
+        </p>
+      </div>
+      <div class="test-section">
+        <span class="test-section-title">Test Steps:</span>
+        <div class="test-steps">
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 1:</strong> Navigate to the tasks view</div>
+            <div class="wireframe-link">
+              <a href="WF-005-filter-panel.html" target="_blank"
+                >View wireframe for filter panel</a
+              >
+            </div>
+          </div>
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 2:</strong> Open the filter panel and select "In Progress" state</div>
+            <div class="wireframe-link">
+              <a href="WF-006-filtered-task-list.html" target="_blank"
+                >View wireframe for filtered task list</a
+              >
+            </div>
+          </div>
+          <div class="test-step-block">
+            <div class="test-step-text"><strong>Step 3:</strong> Verify only "In Progress" tasks are displayed</div>
+            <div class="wireframe-link">
+              <a href="WF-006-filtered-task-list.html" target="_blank"
+                >View wireframe for filtered task list</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-section">
+        <span class="test-section-title">Expected Result:</span>
+        <p style="margin: 5px 0 0 0">
+          Only tasks with "In Progress" state are displayed in the list. The filter indicator shows the active filter.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
