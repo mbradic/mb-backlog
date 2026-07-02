@@ -29,7 +29,7 @@ My personal app for maintaining my personal backlog
 - Third-party integrations and external system connections
 
 ### Target Users
-- **Individual Task Manager:** A single user who needs to manage tasks in a centralized location.
+- **Owner:** A single user who needs to manage tasks in a centralized location.
 
 ## Data structures
 
@@ -41,12 +41,12 @@ My personal app for maintaining my personal backlog
 
 ## Functional Requirements
 
-| ID | Title | Description |
-|----|---------------|-------------|
-| FR-001 | View tasks | User can view a list of all tasks with their required fields |
-| FR-002 | Sort tasks | User can sort tasks by a single column |
-| FR-003 | Filter tasks | User can filter tasks by multiple columns |
-| FR-004 | View task details | User can view task detail with all it's fields |
-| FR-005 | Create task | User can create a new task by providing all required fields and optionally some or all optional fields |
-| FR-006 | Edit task | User can edit all task's fields |
-| FR-007 | Delete task | User can delete an existing task from the backlog |
+| ID | Title | Description | Link |
+|----|---------------|-------------|---|
+| FR-001 | View tasks | User can view a list of all tasks with their required fields | [specification](specification/FR-001-view-tasks.html) |
+| FR-002 | Sort tasks | User can sort tasks by a single column | [specification](specification/FR-002-sort-tasks.html) |
+| FR-003 | Filter tasks | User can filter tasks by multiple columns | [specification](specification/FR-003-filter-tasks.html) |
+| FR-004 | View task details | User can view task detail with all it's fields | [specification](specification/FR-004-view-task-details.html) |
+| FR-005 | Create task | User can create a new task by providing all required fields and optionally some or all optional fields | [specification](specification/FR-005-create-task.html) |
+| FR-006 | Edit task | User can edit all task's fields | [specification](specification/FR-006-edit-task.html) |
+| FR-007 | Delete task | User can delete an existing task from the backlog | [specification](specification/FR-007-delete-task.html) |
