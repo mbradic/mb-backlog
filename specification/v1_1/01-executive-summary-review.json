@@ -1,0 +1,9 @@
+{
+  "documentName": "Executive Summary",
+  "documentVersion": "1.1",
+  "reviewDate": "2026-07-02T00:43:36.637Z",
+  "owner": {
+    "status": "Needs Revision",
+    "comments": "\"mb-backlog is a personal application designed for managing and maintaining a personal backlog of tasks, projects, and ideas.\" - just tasks. drop projects and ideas. \"The application provides users with a centralized platform to organize, prioritize, and track their personal work items.\" - it's a personal application. There will be only one user. \"This requirements specification outlines the functional and non-functional requirements for version 1.1 of the mb-backlog application.\" The version of the specification is 1.1, but the version of the application is 1.0. \"Facilitate task tracking and progress monitoring\" - I don't know what this means. Reformulate or explain."
+  }
+}

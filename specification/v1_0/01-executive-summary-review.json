@@ -1,0 +1,9 @@
+{
+  "documentName": "Executive Summary",
+  "documentVersion": "1.0",
+  "reviewDate": "2026-07-02T00:01:41.222Z",
+  "owner": {
+    "status": "Needs Revision",
+    "comments": "\"Support flexible categorization and filtering of work items\". We don´t need categorization at the moment. But we do need filtering and we do need sorting."
+  }
+}

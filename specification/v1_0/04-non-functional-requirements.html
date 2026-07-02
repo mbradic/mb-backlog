@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Non-Functional Requirements - Requirements Specification</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="non-functional-requirements">4. Non-Functional Requirements</h2>
+
+      <h3 id="nfr-performance">Performance</h3>
+      <ul>
+        <li>Page load time: Less than 2 seconds for initial page load</li>
+        <li>Backlog item operations (create, update, delete): Response within 500 milliseconds</li>
+        <li>Search and filter operations: Response within 1 second for up to 1000 items</li>
+        <li>System throughput: Support at least 100 concurrent users</li>
+      </ul>
+
+      <h3 id="nfr-scalability">Scalability</h3>
+      <p>
+        The system should support individual user growth from initial MVP launch. Expected user capacity for v1.0 is up to 1000 active users. The architecture should be designed to allow for horizontal scaling as the user base grows. Data volume scaling should support up to 10,000 backlog items per user without degradation of performance.
+      </p>
+
+      <h3 id="nfr-security">Security</h3>
+      <ul>
+        <li>Authentication: OAuth 2.0 or JWT-based authentication</li>
+        <li>Authorization: Role-based access control for personal data ownership</li>
+        <li>Data Encryption: HTTPS for data in transit, encrypted storage for sensitive data at rest</li>
+        <li>Compliance: GDPR compliance for user data handling and privacy</li>
+        <li>Password Policy: Minimum 8 characters with complexity requirements</li>
+      </ul>
+
+      <h3 id="nfr-reliability">Reliability & Availability</h3>
+      <ul>
+        <li>Uptime SLA: 99.5% availability for the web application</li>
+        <li>Mean Time To Recovery (MTTR): Less than 30 minutes for critical issues</li>
+        <li>Backup Strategy: Daily automated backups with 30-day retention; point-in-time recovery capability</li>
+        <li>Data Integrity: Transactional consistency for all data operations</li>
+      </ul>
+
+      <h3 id="nfr-usability">Usability</h3>
+      <ul>
+        <li>Browser compatibility: Chrome, Firefox, Safari, and Edge (latest 2 versions)</li>
+        <li>Accessibility: WCAG 2.1 Level A compliance for basic accessibility</li>
+        <li>Response to user interactions: Visual feedback within 100 milliseconds</li>
+        <li>Mobile responsiveness: Responsive design supporting tablets and large phones</li>
+        <li>Intuitive navigation and clear information architecture</li>
+      </ul>
+
+      <h3 id="nfr-maintainability">Maintainability</h3>
+      <ul>
+        <li>Code documentation: Inline comments for complex logic, README for setup and architecture</li>
+        <li>Testing coverage: Minimum 70% test coverage for core functionality</li>
+        <li>Technology stack: Modern, well-supported frameworks and libraries</li>
+        <li>Version control: Git-based workflow with clear commit history</li>
+        <li>Deployment: Automated CI/CD pipeline for testing and deployment</li>
+      </ul>
+    </div>
+  </body>
+</html>

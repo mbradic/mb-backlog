@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functional Requirements - Requirements Specification</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="functional-requirements">3. Functional Requirements</h2>
+      <p>
+        The following section details the specific functional requirements for mb-backlog v1.2. Each requirement is assigned a unique identifier for traceability.
+      </p>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-001">FR-001: User Authentication and Account Management</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall provide user authentication mechanisms to secure personal backlog data. Users must be able to create accounts, log in, and manage their profile information.
+          </p>
+          <p><strong>Related User Role:</strong> All Users</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-001-001">TC-001-001: User Registration and Login</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">User is on the login page with no existing account</p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <ol>
+                  <li>Click "Create New Account" button</li>
+                  <li>Enter email address and password</li>
+                  <li>Complete registration form</li>
+                  <li>Log in with created credentials</li>
+                </ol>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">User account is created successfully and user is logged in to the dashboard</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-002">FR-002: Create and Manage Backlog Items (Tasks)</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall allow users to create, view, update, and delete backlog items (tasks). Each task should support title, description, and additional metadata.
+          </p>
+          <p><strong>Related User Role:</strong> All Users</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-002-001">TC-002-001: Create New Task</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">User is logged in and viewing the backlog dashboard</p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <ol>
+                  <li>Click "Add New Task" button</li>
+                  <li>Enter task title and description</li>
+                  <li>Click "Save" button</li>
+                </ol>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">New task is created and appears in the backlog list</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-003">FR-003: Prioritization, Sorting, and Status Management</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall enable users to prioritize backlog items, sort them by various attributes, and manage their status (e.g., Open, In Progress, Completed). Users should be able to reorder items by priority and sort by other criteria such as priority level, creation date, or status.
+          </p>
+          <p><strong>Related User Role:</strong> All Users</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-003-001">TC-003-001: Sort Items by Priority</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">User has multiple backlog items with different priority levels in the system</p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <ol>
+                  <li>Navigate to backlog list view</li>
+                  <li>Click on "Sort by Priority" option</li>
+                  <li>Select "High to Low" sort order</li>
+                  <li>Verify items are displayed in priority order</li>
+                </ol>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">Backlog items are sorted by priority with highest priority items displayed first</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-004">FR-004: Search and Filter Functionality</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall provide comprehensive search and filtering capabilities to help users find and organize specific backlog items based on title, status, priority, or other attributes. Users should be able to apply multiple filters simultaneously and refine their search results.
+          </p>
+          <p><strong>Related User Role:</strong> All Users</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-004-001">TC-004-001: Filter Backlog Items by Status</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">User has backlog items with different statuses (Open, In Progress, Completed)</p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <ol>
+                  <li>Navigate to backlog list view</li>
+                  <li>Click on status filter dropdown</li>
+                  <li>Select "In Progress" status</li>
+                  <li>Verify only "In Progress" items are displayed</li>
+                </ol>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">Only backlog items with "In Progress" status are displayed in the list</p>
+            </div>
+          </div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-004-002">TC-004-002: Search Backlog Items</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">User has multiple backlog items with varied titles and descriptions</p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <ol>
+                  <li>Navigate to backlog list view</li>
+                  <li>Click on search box</li>
+                  <li>Enter search keyword (e.g., "design" or "API")</li>
+                  <li>Verify matching items are displayed</li>
+                </ol>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">Search returns backlog items matching the search term in title or description</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
