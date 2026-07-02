@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mb-backlog - Functional Requirements v1.0</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="functional-requirements">mb-backlog - Functional Requirements v1.0</h2>
+      <p>
+        The following section details the specific functional requirements for
+        mb-backlog v1.0. Each requirement is assigned a unique identifier for
+        traceability. This is a single-user personal task management application
+        designed to provide a centralized platform for managing personal work items.
+      </p>
+
+      <div>
+        <h3>List of Functional Requirements</h3>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+          <thead>
+            <tr style="background-color: #000000;">
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left; color: white;">ID</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left; color: white;">Feature Title</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left; color: white;">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;"><a href="#fr-001">FR-001</a></td>
+              <td style="border: 1px solid #ddd; padding: 8px;">Create Personal Tasks</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">User can create new personal tasks with title and description</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+              <td style="border: 1px solid #ddd; padding: 8px;"><a href="#fr-002">FR-002</a></td>
+              <td style="border: 1px solid #ddd; padding: 8px;">Manage Task Status</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">User can update task status (New, In Progress, Completed)</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;"><a href="#fr-003">FR-003</a></td>
+              <td style="border: 1px solid #ddd; padding: 8px;">Filter and Search Tasks</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">User can filter and search tasks by status and keywords</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+              <td style="border: 1px solid #ddd; padding: 8px;"><a href="#fr-004">FR-004</a></td>
+              <td style="border: 1px solid #ddd; padding: 8px;">Sort Work Items</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">User can sort tasks by date created, status, and priority</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;"><a href="#fr-005">FR-005</a></td>
+              <td style="border: 1px solid #ddd; padding: 8px;">View Personal Backlog</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">User can view all tasks in a centralized backlog view</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-001">FR-001: Create Personal Tasks</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall allow the user to create new personal tasks with a title and description. Each task represents a work item in the user's personal backlog.
+          </p>
+          <p><strong>Related User Role:</strong> Individual Task Manager</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-001-001">TC-001-001: Create Task with Title and Description</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                User is logged into the mb-backlog application and is on the main backlog dashboard.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User clicks the "Create Task" or "Add New Task" button
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> System displays a task creation form with fields for Title and Description
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> User enters "Implement user authentication" in the Title field
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 4:</strong> User enters "Add login and registration functionality to the application" in the Description field
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 5:</strong> User clicks the "Save Task" button
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                Task is successfully created with the provided title and description. The new task appears in the backlog list with a default status of "New". User receives a confirmation message.
+              </p>
+            </div>
+          </div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-001-002">TC-001-002: Create Task with Title Only</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                User is on the task creation form.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User enters "Design database schema" in the Title field
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> User leaves the Description field empty
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> User clicks the "Save Task" button
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                Task is created with only the title. Description field remains empty. Task is added to the backlog.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-002">FR-002: Manage Task Status</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall allow the user to update the status of personal tasks. Tasks can be in one of three states: New, In Progress, or Completed.
+          </p>
+          <p><strong>Related User Role:</strong> Individual Task Manager</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-002-001">TC-002-001: Change Task Status from New to In Progress</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                A task with status "New" exists in the user's backlog.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User selects a task from the backlog list
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> User clicks on the status field or a status dropdown menu
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> User selects "In Progress" from the status options
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 4:</strong> System updates the task status
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                Task status is successfully changed to "In Progress". The change is immediately reflected in the backlog view.
+              </p>
+            </div>
+          </div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-002-002">TC-002-002: Mark Task as Completed</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                A task with status "In Progress" exists in the user's backlog.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User selects a task that is in progress
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> User clicks on the status dropdown and selects "Completed"
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> System updates the task status to Completed
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                Task status is changed to "Completed". The task may be visually distinguished (e.g., strikethrough, grayed out) in the backlog list.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-003">FR-003: Filter and Search Tasks</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall provide filtering and search capabilities that allow the user to find specific tasks by status and keywords. This enables the user to focus on relevant work items.
+          </p>
+          <p><strong>Related User Role:</strong> Individual Task Manager</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-003-001">TC-003-001: Filter Tasks by Status</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                User has multiple tasks with different statuses in the backlog.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User locates the filter panel or filter options in the backlog view
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> User selects "In Progress" status filter checkbox
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> System filters the backlog to show only tasks with "In Progress" status
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                Only tasks with "In Progress" status are displayed in the backlog. Other tasks are hidden from view.
+              </p>
+            </div>
+          </div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-003-002">TC-003-002: Search Tasks by Keyword</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                User has multiple tasks in the backlog with different titles and descriptions.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User locates the search input field in the backlog view
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> User types "database" in the search field
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> System searches through task titles and descriptions for matches
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                System displays only tasks that contain "database" in their title or description. All matching results are highlighted or clearly visible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-004">FR-004: Sort Work Items</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall provide sorting capabilities that allow the user to organize tasks by date created, status, and priority. This helps the user view tasks in their preferred order.
+          </p>
+          <p><strong>Related User Role:</strong> Individual Task Manager</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-004-001">TC-004-001: Sort Tasks by Date Created (Newest First)</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                User has multiple tasks in the backlog with different creation dates.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User locates the sort options in the backlog view
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> User selects "Date Created (Newest First)" from the sort dropdown
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> System reorganizes tasks in the backlog by creation date in descending order
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                Tasks are sorted with the most recently created tasks appearing first in the list.
+              </p>
+            </div>
+          </div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-004-002">TC-004-002: Sort Tasks by Status</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                User has tasks with different statuses (New, In Progress, Completed) in the backlog.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User selects "Sort by Status" from the sort options
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> System reorganizes tasks grouped by their status
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                Tasks are sorted by status, typically in order: New, In Progress, Completed. Tasks with the same status maintain their relative order.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirement">
+        <h3 class="requirement-id" id="fr-005">FR-005: View Personal Backlog</h3>
+        <div class="requirement-description">
+          <p>
+            <strong>Description:</strong> The system shall provide a centralized backlog view where the user can see all their personal tasks. This view serves as the primary interface for personal task management and organization.
+          </p>
+          <p><strong>Related User Role:</strong> Individual Task Manager</p>
+        </div>
+        <div class="test-scenarios">
+          <div class="test-scenarios-label">Manual Testing Scenarios</div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-005-001">TC-005-001: Display All Tasks in Backlog View</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                User is logged into mb-backlog and has at least 5 tasks in the backlog.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User navigates to the main backlog dashboard
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> System loads and displays the backlog view
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 3:</strong> User verifies that all tasks are visible in a list or table format
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                All personal tasks are displayed in the backlog view with their title, description (if available), status, and creation date clearly visible. The view is organized and easy to read.
+              </p>
+            </div>
+          </div>
+          <div class="test-case">
+            <h4 class="test-case-id" id="tc-005-002">TC-005-002: View Empty Backlog</h4>
+            <div class="test-section">
+              <span class="test-section-title">Precondition:</span>
+              <p style="margin: 5px 0 0 0">
+                User has no tasks in the backlog.
+              </p>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Test Steps:</span>
+              <div class="test-steps">
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 1:</strong> User navigates to the backlog view
+                  </div>
+                </div>
+                <div class="test-step-block">
+                  <div class="test-step-text">
+                    <strong>Step 2:</strong> System loads the backlog view with no tasks
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test-section">
+              <span class="test-section-title">Expected Result:</span>
+              <p style="margin: 5px 0 0 0">
+                System displays a message such as "No tasks found. Create a new task to get started" or an empty state UI with a call-to-action button to create the first task.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
