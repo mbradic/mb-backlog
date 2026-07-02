@@ -192,7 +192,6 @@ table tbody tr:hover {
 
 .test-scenarios {
   background-color: #f2f2f2;
-  border-left: 4px solid #00aa00;
   padding: 15px;
   margin: 15px 0;
   border-radius: 4px;
@@ -208,7 +207,7 @@ table tbody tr:hover {
 
 .test-case {
   background-color: white;
-  border: 1px solid #ddd;
+  border-left: 4px solid #00aa00;
   padding: 12px;
   margin: 10px 0;
   border-radius: 3px;
