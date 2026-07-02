@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mb-backlog - FR-003 - Filter tasks - v1.0</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="requirement">
+      <h3 class="requirement-id" id="fr-003">
+        mb-backlog - FR-003 - Filter tasks - v1.0
+      </h3>
+      <div class="requirement-description">
+        <p>
+          <strong>Description:</strong> User can filter tasks by multiple
+          columns
+        </p>
+        <p><strong>Related User Role:</strong> Individual Task Manager</p>
+      </div>
+      <div class="test-scenarios">
+        <div class="test-scenarios-label">Manual Testing Scenarios</div>
+        <div class="test-case">
+          <h4 class="test-case-id" id="tc-003-001">
+            TC-003-001: Filter tasks by single column (State)
+          </h4>
+          <div class="test-section">
+            <span class="test-section-title">Precondition:</span>
+            <p style="margin: 5px 0 0 0">
+              The task list is displayed with all 12 tasks showing a mix of
+              states (To Do, In Progress, Done). User wants to see only tasks in
+              "To Do" state.
+            </p>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Test Steps:</span>
+            <div class="test-steps">
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 1:</strong> Click on the State filter input field
+                  and type "To Do"
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">
+                            My Tasks (Filtered: 4)
+                          </div>
+                          <div class="wireframe-section-action">+ New Task</div>
+                        </div>
+                        <table class="wireframe-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Code
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Title
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  State
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                            </tr>
+                            <tr class="wireframe-filter-row">
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter code...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter title...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">To Do</div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>TASK-003</td>
+                              <td>Implement user authentication</td>
+                              <td>To Do</td>
+                            </tr>
+                            <tr>
+                              <td>TASK-004</td>
+                              <td>Create task list component</td>
+                              <td>To Do</td>
+                            </tr>
+                            <tr>
+                              <td>TASK-007</td>
+                              <td>Write unit tests</td>
+                              <td>To Do</td>
+                            </tr>
+                            <tr>
+                              <td>TASK-009</td>
+                              <td>Deploy to production</td>
+                              <td>To Do</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer" style="text-align: right">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Expected Result:</span>
+            <p style="margin: 5px 0 0 0">
+              The task list now displays only tasks with State = "To Do" (4
+              matching tasks shown). The State filter input shows "To Do" as
+              active. The task count in the header updates to show "Filtered: 4"
+              indicating a filter is active. All non-matching tasks are hidden.
+            </p>
+          </div>
+        </div>
+        <div class="test-case">
+          <h4 class="test-case-id" id="tc-003-002">
+            TC-003-002: Filter tasks by multiple columns
+          </h4>
+          <div class="test-section">
+            <span class="test-section-title">Precondition:</span>
+            <p style="margin: 5px 0 0 0">
+              The task list currently shows all tasks. User wants to narrow down
+              to tasks that are "In Progress" AND contain "Design" in the title.
+            </p>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Test Steps:</span>
+            <div class="test-steps">
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 1:</strong> Click on the Title filter input and
+                  type "Design"
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">
+                            My Tasks (Filtered: 1)
+                          </div>
+                          <div class="wireframe-section-action">+ New Task</div>
+                        </div>
+                        <table class="wireframe-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Code
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Title
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  State
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                            </tr>
+                            <tr class="wireframe-filter-row">
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter code...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">Design</div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  In Progress
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>TASK-002</td>
+                              <td>Design database schema</td>
+                              <td>In Progress</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer" style="text-align: right">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 2:</strong> Also apply a State filter by typing
+                  "In Progress" in the State filter field
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">
+                            My Tasks (Filtered: 1)
+                          </div>
+                          <div class="wireframe-section-action">+ New Task</div>
+                        </div>
+                        <table class="wireframe-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Code
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Title
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  State
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                            </tr>
+                            <tr class="wireframe-filter-row">
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter code...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">Design</div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  In Progress
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>TASK-002</td>
+                              <td>Design database schema</td>
+                              <td>In Progress</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer" style="text-align: right">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Expected Result:</span>
+            <p style="margin: 5px 0 0 0">
+              The task list now displays only 1 task (TASK-002: "Design database
+              schema" with state "In Progress") that matches BOTH filter
+              criteria. Multiple filters are applied simultaneously using AND
+              logic. The header shows "Filtered: 1" confirming both filters are
+              active and applied. Only tasks matching all active filters are
+              displayed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

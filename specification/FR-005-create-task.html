@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mb-backlog - FR-005 - Create task - v1.0</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="requirement">
+      <h3 class="requirement-id" id="fr-005">
+        mb-backlog - FR-005 - Create task - v1.0
+      </h3>
+      <div class="requirement-description">
+        <p>
+          <strong>Description:</strong> User can create a new task by providing
+          all required fields and optionally some or all optional fields
+        </p>
+        <p><strong>Related User Role:</strong> Individual Task Manager</p>
+      </div>
+      <div class="test-scenarios">
+        <div class="test-scenarios-label">Manual Testing Scenarios</div>
+        <div class="test-case">
+          <h4 class="test-case-id" id="tc-005-001">
+            TC-005-001: Create task with all fields (required and optional)
+          </h4>
+          <div class="test-section">
+            <span class="test-section-title">Precondition:</span>
+            <p style="margin: 5px 0 0 0">
+              User is on the task list view. The "+ New Task" button is visible.
+              No task with code TASK-010 currently exists.
+            </p>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Test Steps:</span>
+            <div class="test-steps">
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 1:</strong> Click the "+ New Task" button to open
+                  the create task form
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">New Task</div>
+                        </div>
+                        <div class="wireframe-form-row">
+                          <div class="wireframe-label">
+                            Code <span style="color: red">*</span>
+                          </div>
+                          <div
+                            class="wireframe-item"
+                            style="
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              background-color: #f9f9f9;
+                            "
+                          >
+                            TASK-010
+                          </div>
+                        </div>
+                        <div class="wireframe-form-row">
+                          <div class="wireframe-label">
+                            Title <span style="color: red">*</span>
+                          </div>
+                          <div
+                            class="wireframe-item"
+                            style="
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              background-color: #f9f9f9;
+                            "
+                          >
+                            Implement API endpoints
+                          </div>
+                        </div>
+                        <div class="wireframe-form-row">
+                          <div class="wireframe-label">
+                            State <span style="color: red">*</span>
+                          </div>
+                          <div
+                            class="wireframe-item"
+                            style="
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              background-color: #f9f9f9;
+                            "
+                          >
+                            To Do
+                          </div>
+                        </div>
+                        <div class="wireframe-form-row">
+                          <div class="wireframe-label">Description</div>
+                          <div
+                            class="wireframe-item"
+                            style="
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              background-color: #f9f9f9;
+                              min-height: 80px;
+                            "
+                          >
+                            Create RESTful API endpoints for task CRUD
+                            operations and ensure proper error handling and
+                            validation.
+                          </div>
+                        </div>
+                      </div>
+                      <div style="text-align: right; margin-top: 20px">
+                        <div class="wireframe-button">Save</div>
+                        <div class="wireframe-button-secondary">Cancel</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 2:</strong> Fill in all fields: Code (TASK-010),
+                  Title (Implement API endpoints), State (To Do), and
+                  Description (detailed text)
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">New Task</div>
+                        </div>
+                        <div
+                          style="
+                            background-color: #e8f5e9;
+                            padding: 15px;
+                            border-radius: 4px;
+                            margin: 10px 0;
+                            text-align: center;
+                          "
+                        >
+                          <strong>✓ Task created successfully!</strong>
+                          <p style="margin: 5px 0 0 0">
+                            TASK-010: "Implement API endpoints" has been added
+                            to your task list.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 3:</strong> Click the Save button to create the
+                  task
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">
+                            My Tasks (13)
+                          </div>
+                          <div class="wireframe-section-action">+ New Task</div>
+                        </div>
+                        <table class="wireframe-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Code
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Title
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  State
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                            </tr>
+                            <tr class="wireframe-filter-row">
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter code...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter title...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter state...
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr style="background-color: #fff3cd">
+                              <td>TASK-010</td>
+                              <td>Implement API endpoints</td>
+                              <td>To Do</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer" style="text-align: right">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Expected Result:</span>
+            <p style="margin: 5px 0 0 0">
+              The new task (TASK-010) is created successfully with all fields
+              populated. A success message is displayed. The form closes and the
+              user is returned to the task list. The new task appears in the
+              list with all entered information (Code, Title, State, and the
+              description is stored). The task count increases from 12 to 13.
+            </p>
+          </div>
+        </div>
+        <div class="test-case">
+          <h4 class="test-case-id" id="tc-005-002">
+            TC-005-002: Create task with required fields only
+          </h4>
+          <div class="test-section">
+            <span class="test-section-title">Precondition:</span>
+            <p style="margin: 5px 0 0 0">
+              User is on the task list view ready to create a new task. The "+
+              New Task" button is visible.
+            </p>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Test Steps:</span>
+            <div class="test-steps">
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 1:</strong> Click "+ New Task" and fill in only
+                  required fields: Code (TASK-011), Title (Setup logging), State
+                  (In Progress)
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">New Task</div>
+                        </div>
+                        <div class="wireframe-form-row">
+                          <div class="wireframe-label">
+                            Code <span style="color: red">*</span>
+                          </div>
+                          <div
+                            class="wireframe-item"
+                            style="
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              background-color: #f9f9f9;
+                            "
+                          >
+                            TASK-011
+                          </div>
+                        </div>
+                        <div class="wireframe-form-row">
+                          <div class="wireframe-label">
+                            Title <span style="color: red">*</span>
+                          </div>
+                          <div
+                            class="wireframe-item"
+                            style="
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              background-color: #f9f9f9;
+                            "
+                          >
+                            Setup logging
+                          </div>
+                        </div>
+                        <div class="wireframe-form-row">
+                          <div class="wireframe-label">
+                            State <span style="color: red">*</span>
+                          </div>
+                          <div
+                            class="wireframe-item"
+                            style="
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              background-color: #f9f9f9;
+                            "
+                          >
+                            In Progress
+                          </div>
+                        </div>
+                        <div class="wireframe-form-row">
+                          <div class="wireframe-label">Description</div>
+                          <div
+                            class="wireframe-item"
+                            style="
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              background-color: #f9f9f9;
+                              min-height: 80px;
+                              color: #999;
+                            "
+                          >
+                            (Optional)
+                          </div>
+                        </div>
+                      </div>
+                      <div style="text-align: right; margin-top: 20px">
+                        <div class="wireframe-button">Save</div>
+                        <div class="wireframe-button-secondary">Cancel</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 2:</strong> Leave the Description field empty and
+                  click Save
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">
+                            My Tasks (14)
+                          </div>
+                          <div class="wireframe-section-action">+ New Task</div>
+                        </div>
+                        <table class="wireframe-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Code
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Title
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  State
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                            </tr>
+                            <tr class="wireframe-filter-row">
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter code...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter title...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter state...
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr style="background-color: #fff3cd">
+                              <td>TASK-011</td>
+                              <td>Setup logging</td>
+                              <td>In Progress</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer" style="text-align: right">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Expected Result:</span>
+            <p style="margin: 5px 0 0 0">
+              The task (TASK-011) is created successfully with only required
+              fields (Code, Title, State) populated. The Description field can
+              be left empty without error. The new task appears in the task list
+              with the required fields displayed. The task count increases to
+              14. The system accepts the creation even though the optional
+              Description field is empty.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

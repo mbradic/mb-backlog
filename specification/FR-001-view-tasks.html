@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mb-backlog - FR-001 - View tasks - v1.0</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="requirement">
+      <h3 class="requirement-id" id="fr-001">
+        mb-backlog - FR-001 - View tasks - v1.0
+      </h3>
+      <div class="requirement-description">
+        <p>
+          <strong>Description:</strong> User can view a list of all tasks with
+          their required fields (code, title, state)
+        </p>
+        <p><strong>Related User Role:</strong> Individual Task Manager</p>
+      </div>
+      <div class="test-scenarios">
+        <div class="test-scenarios-label">Manual Testing Scenarios</div>
+        <div class="test-case">
+          <h4 class="test-case-id" id="tc-001-001">
+            TC-001-001: Display all tasks in list view
+          </h4>
+          <div class="test-section">
+            <span class="test-section-title">Precondition:</span>
+            <p style="margin: 5px 0 0 0">
+              The system contains multiple tasks with varying states (To Do, In
+              Progress, Done). The user is on the main application dashboard.
+            </p>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Test Steps:</span>
+            <div class="test-steps">
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 1:</strong> Navigate to the Tasks view (main page
+                  loads automatically on application start)
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">
+                            My Tasks (5)
+                          </div>
+                          <div class="wireframe-section-action">+ New Task</div>
+                        </div>
+                        <table class="wireframe-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Code
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  Title
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-th-content">
+                                  State
+                                  <span class="wireframe-sort-btn">⇅</span>
+                                </div>
+                              </th>
+                            </tr>
+                            <tr class="wireframe-filter-row">
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter code...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter title...
+                                </div>
+                              </th>
+                              <th>
+                                <div class="wireframe-filter-input">
+                                  Filter state...
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>TASK-001</td>
+                              <td>Setup project environment</td>
+                              <td>Done</td>
+                            </tr>
+                            <tr>
+                              <td>TASK-002</td>
+                              <td>Design database schema</td>
+                              <td>In Progress</td>
+                            </tr>
+                            <tr>
+                              <td>TASK-003</td>
+                              <td>Implement user authentication</td>
+                              <td>To Do</td>
+                            </tr>
+                            <tr>
+                              <td>TASK-004</td>
+                              <td>Create task list component</td>
+                              <td>To Do</td>
+                            </tr>
+                            <tr>
+                              <td>TASK-005</td>
+                              <td>Setup CI/CD pipeline</td>
+                              <td>In Progress</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer" style="text-align: right">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Expected Result:</span>
+            <p style="margin: 5px 0 0 0">
+              The task list is displayed with all tasks visible. Each row shows
+              the Code, Title, and State columns. The user can see all required
+              fields for each task. The list includes a header row with sortable
+              column indicators and filter inputs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mb-backlog - FR-004 - View task details - v1.0</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="requirement">
+      <h3 class="requirement-id" id="fr-004">
+        mb-backlog - FR-004 - View task details - v1.0
+      </h3>
+      <div class="requirement-description">
+        <p>
+          <strong>Description:</strong> User can view task detail with all its
+          fields
+        </p>
+        <p><strong>Related User Role:</strong> Individual Task Manager</p>
+      </div>
+      <div class="test-scenarios">
+        <div class="test-scenarios-label">Manual Testing Scenarios</div>
+        <div class="test-case">
+          <h4 class="test-case-id" id="tc-004-001">
+            TC-004-001: View complete task with description
+          </h4>
+          <div class="test-section">
+            <span class="test-section-title">Precondition:</span>
+            <p style="margin: 5px 0 0 0">
+              The task list is displayed. A task with all fields populated
+              including description exists (e.g., TASK-002: "Design database
+              schema" with detailed description).
+            </p>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Test Steps:</span>
+            <div class="test-steps">
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 1:</strong> Click on a task row (TASK-002) to
+                  open the task detail view
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">
+                            Task Details - TASK-002
+                          </div>
+                          <div class="wireframe-section-action">Close (X)</div>
+                        </div>
+                        <div
+                          style="
+                            padding: 15px;
+                            border: 1px solid #ddd;
+                            border-radius: 4px;
+                            margin: 10px 0;
+                          "
+                        >
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">
+                              <strong>Code:</strong>
+                            </div>
+                            <div class="wireframe-item">TASK-002</div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">
+                              <strong>Title:</strong>
+                            </div>
+                            <div class="wireframe-item">
+                              Design database schema
+                            </div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">
+                              <strong>State:</strong>
+                            </div>
+                            <div class="wireframe-item">In Progress</div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">
+                              <strong>Description:</strong>
+                            </div>
+                            <div class="wireframe-item">
+                              Create a comprehensive database schema that
+                              supports task management with proper
+                              normalization. Include tables for tasks, states,
+                              and audit logs. Ensure scalability for future
+                              features.
+                            </div>
+                          </div>
+                        </div>
+                        <div style="text-align: right; margin-top: 20px">
+                          <div class="wireframe-button">Edit</div>
+                          <div class="wireframe-button-secondary">Close</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Expected Result:</span>
+            <p style="margin: 5px 0 0 0">
+              A detail panel/modal opens showing all task fields: Code
+              (TASK-002), Title, State (In Progress), and Description. All
+              information is clearly displayed and readable. The description
+              field shows the full text content. Close and Edit buttons are
+              available. The detail view is easily readable with proper
+              formatting and spacing.
+            </p>
+          </div>
+        </div>
+        <div class="test-case">
+          <h4 class="test-case-id" id="tc-004-002">
+            TC-004-002: View task without description (optional field empty)
+          </h4>
+          <div class="test-section">
+            <span class="test-section-title">Precondition:</span>
+            <p style="margin: 5px 0 0 0">
+              A task exists with required fields only and no description
+              provided (e.g., TASK-007: "Write unit tests" with empty
+              description field).
+            </p>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Test Steps:</span>
+            <div class="test-steps">
+              <div class="test-step-block">
+                <div class="test-step-text">
+                  <strong>Step 1:</strong> Click on the task without description
+                  (TASK-007) to open its detail view
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-header">
+                    <div class="wireframe-logo">mb-backlog</div>
+                    <div class="wireframe-nav">
+                      <div>Tasks</div>
+                    </div>
+                  </div>
+                  <div class="wireframe-main">
+                    <div class="wireframe-content">
+                      <div class="wireframe-section">
+                        <div class="wireframe-section-header">
+                          <div class="wireframe-section-title">
+                            Task Details - TASK-007
+                          </div>
+                          <div class="wireframe-section-action">Close (X)</div>
+                        </div>
+                        <div
+                          style="
+                            padding: 15px;
+                            border: 1px solid #ddd;
+                            border-radius: 4px;
+                            margin: 10px 0;
+                          "
+                        >
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">
+                              <strong>Code:</strong>
+                            </div>
+                            <div class="wireframe-item">TASK-007</div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">
+                              <strong>Title:</strong>
+                            </div>
+                            <div class="wireframe-item">Write unit tests</div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">
+                              <strong>State:</strong>
+                            </div>
+                            <div class="wireframe-item">To Do</div>
+                          </div>
+                          <div class="wireframe-form-row">
+                            <div class="wireframe-label">
+                              <strong>Description:</strong>
+                            </div>
+                            <div
+                              class="wireframe-item"
+                              style="color: #999; font-style: italic"
+                            >
+                              (No description provided)
+                            </div>
+                          </div>
+                        </div>
+                        <div style="text-align: right; margin-top: 20px">
+                          <div class="wireframe-button">Edit</div>
+                          <div class="wireframe-button-secondary">Close</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wireframe-footer">
+                    © 2026 mb-backlog | Personal Task Manager
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-section">
+            <span class="test-section-title">Expected Result:</span>
+            <p style="margin: 5px 0 0 0">
+              The detail panel displays all fields including Code, Title, and
+              State. The Description field is shown but indicates it is empty
+              with a placeholder message like "(No description provided)" or
+              appears blank/grayed out. The UI gracefully handles the missing
+              optional field without errors. All required fields (Code, Title,
+              State) are displayed correctly. Edit and Close buttons remain
+              functional.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
